@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Added viewport-fit=cover for full-screen mobile use -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>NeuraFlow AI Pro</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Neura Flow AI Pro - A cutting-edge AI platform by Sahlan Hasan, revolutionizing neural networks and artificial intelligence technology.">
+  <meta name="keywords" content="Neura Flow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourwebsite.com"> <!-- Replace with your actual domain -->
+  <meta property="og:title" content="Neura Flow AI Pro">
+  <meta property="og:description" content="Neura Flow AI Pro - A cutting-edge AI platform by Sahlan Hasan.">
+  <meta property="og:image" content="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png">
+  <meta property="og:url" content="https://yourwebsite.com">
+  
   <style>
     /* === Enhanced Base Styles === */
     * {
@@ -13,11 +24,13 @@
       font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
+    /* Safe-area inset for mobile devices (e.g., iOS) */
     body {
       background: #0f172a;
       color: #f8fafc;
       height: 100vh;
-      overflow-x: hidden; /* allow vertical scrolling on mobile */
+      overflow-x: hidden;
+      padding-top: env(safe-area-inset-top);
     }
 
     /* === Premium Sidebar === */
@@ -31,7 +44,7 @@
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
       border-right: 1px solid #334155;
-      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 4px 0 15px rgba(0,0,0,0.2);
     }
 
     .sidebar.active {
@@ -51,6 +64,7 @@
       height: 50px;
       border-radius: 10px;
       object-fit: cover;
+      cursor: pointer; /* indicate clickable */
     }
 
     /* === Header Styles === */
@@ -62,6 +76,16 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
+    }
+    /* New header-logo container */
+    .header-logo {
+      flex: 0 0 auto;
+    }
+    .logo-small {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      object-fit: cover;
     }
 
     .menu-button {
@@ -87,7 +111,7 @@
       color: transparent;
       animation: titleGlow 3s ease-in-out infinite;
       position: relative;
-      margin: 0 20px;
+      margin: 0 10px;
     }
 
     @keyframes titleGlow {
@@ -151,7 +175,7 @@
     .bot-message {
       background: #1e293b;
       border: 1px solid #334155;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     /* === Premium Input System === */
@@ -232,20 +256,20 @@
         transform: translateX(85%);
       }
 
-      /* Header: stack items vertically */
+      /* Header: stack items vertically if needed, but here we keep side-by-side if space allows */
       .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        flex-wrap: wrap;
         padding: 10px 15px;
+      }
+      .header-logo, .header-title, .ceo-tag {
+        margin: 5px;
       }
       .header-title {
         font-size: 1.2rem;
-        margin: 10px 0;
+        margin: 5px 10px;
       }
       .ceo-tag {
         font-size: 0.8rem;
-        margin-bottom: 10px;
       }
 
       /* Message width adjustments */
@@ -268,7 +292,8 @@
   <!-- Premium Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo">
+      <!-- Sidebar logo now becomes clickable to toggle full view -->
+      <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">Neura Logs</h2>
     </div>
     <ul class="conversation-list" id="conversation-list"></ul>
@@ -277,9 +302,11 @@
   <!-- Main Interface -->
   <div class="container">
     <header class="header">
-      <button id="menu-button" class="menu-button">
-        ☰
-      </button>
+      <button id="menu-button" class="menu-button">☰</button>
+      <!-- Added header-logo for side-by-side display -->
+      <div class="header-logo">
+        <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NF Logo" class="logo-small">
+      </div>
       <div class="header-title">Neuro Flow</div>
       <div class="ceo-tag">🚀 CEO & Founder: Sahlan Hasan</div>
     </header>
@@ -311,10 +338,17 @@
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const conversationList = document.getElementById('conversation-list');
+    // Sidebar logo element for toggling full view
+    const sidebarLogo = document.getElementById('sidebar-logo');
 
-    // Toggle Premium Sidebar
+    // Toggle Premium Sidebar when menu button is clicked
     menuButton.addEventListener('click', () => {
       sidebar.classList.toggle('active');
+    });
+
+    // Also toggle sidebar when clicking the sidebar logo so that it expands to show at least the NF logo
+    sidebarLogo.addEventListener('click', () => {
+      sidebar.classList.add('active');
     });
 
     // Enhanced Message Handling
