@@ -225,6 +225,16 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
+    
+    /* Style the SVG for a cooler hover effect */
+    #send-btn svg {
+      width: 18px;
+      fill: white;
+      transition: transform 0.2s ease;
+    }
+    #send-btn:hover svg {
+      transform: scale(1.2);
+    }
 
     /* === Animations === */
     @keyframes messageAppear {
@@ -268,6 +278,33 @@
         font-size: 0.7rem;
         padding: 4px 10px;
       }
+      
+      /* --- Input Area Adjustments for Mobile --- */
+      .input-container {
+        padding: 10px;
+      }
+      .input-wrapper {
+        gap: 8px;
+      }
+      #user-input {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+      #send-btn {
+        padding: 10px 16px;
+      }
+      /* Hide the send text on mobile so only the icon shows */
+      #send-btn span {
+        display: none;
+      }
+      /* Increase the SVG icon size on mobile for a cool look */
+      #send-btn svg {
+        width: 24px;
+      }
+      /* Optionally, add a slight scaling hover effect on the button */
+      #send-btn:hover svg {
+        transform: scale(1.3);
+      }
     }
   </style>
 </head>
@@ -308,7 +345,7 @@
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
           <span>Send</span>
-          <svg style="width: 18px; fill: white" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
           </svg>
         </button>
