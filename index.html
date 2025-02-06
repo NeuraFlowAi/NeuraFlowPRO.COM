@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Added viewport-fit=cover for full-screen mobile use -->
+  <!-- Enable full-screen experience on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>NeuraFlow AI Pro</title>
   <!-- SEO Meta Tags -->
@@ -44,7 +44,7 @@
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
       border-right: 1px solid #334155;
-      box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar.active {
@@ -64,7 +64,7 @@
       height: 50px;
       border-radius: 10px;
       object-fit: cover;
-      cursor: pointer; /* indicate clickable */
+      cursor: pointer;
     }
 
     /* === Header Styles === */
@@ -76,16 +76,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-    }
-    /* New header-logo container */
-    .header-logo {
-      flex: 0 0 auto;
-    }
-    .logo-small {
-      width: 40px;
-      height: 40px;
-      border-radius: 5px;
-      object-fit: cover;
     }
 
     .menu-button {
@@ -175,7 +165,7 @@
     .bot-message {
       background: #1e293b;
       border: 1px solid #334155;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* === Premium Input System === */
@@ -247,43 +237,26 @@
         overflow-y: auto;
       }
 
-      /* Sidebar adjustments */
+      /* Sidebar adjustments: keep fixed 280px width so the full NF logo appears */
       .sidebar {
-        width: 85%;
-        left: -85%;
+        width: 280px;
+        left: -280px;
       }
       .sidebar.active {
-        transform: translateX(85%);
+        transform: translateX(280px);
       }
 
-      /* Header: stack items vertically if needed, but here we keep side-by-side if space allows */
+      /* Header: ensure side-by-side layout for menu button, title, and CEO tag */
       .header {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         padding: 10px 15px;
-      }
-      .header-logo, .header-title, .ceo-tag {
-        margin: 5px;
       }
       .header-title {
         font-size: 1.2rem;
-        margin: 5px 10px;
+        margin: 0 10px;
       }
       .ceo-tag {
         font-size: 0.8rem;
-      }
-
-      /* Message width adjustments */
-      .message {
-        max-width: 90%;
-      }
-
-      /* Input wrapper adjustments */
-      .input-wrapper {
-        padding: 0 10px;
-      }
-
-      #send-btn {
-        padding: 14px;
       }
     }
   </style>
@@ -292,7 +265,7 @@
   <!-- Premium Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <!-- Sidebar logo now becomes clickable to toggle full view -->
+      <!-- Sidebar logo remains here and is clickable to expand the sidebar -->
       <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">Neura Logs</h2>
     </div>
@@ -303,12 +276,9 @@
   <div class="container">
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
-      <!-- Added header-logo for side-by-side display -->
-      <div class="header-logo">
-        <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NF Logo" class="logo-small">
-      </div>
+      <!-- Header now shows only the title and CEO tag (no extra NF logo) -->
       <div class="header-title">Neuro Flow</div>
-      <div class="ceo-tag">🚀 CEO & Founder: Sahlan Hasan</div>
+      <div class="ceo-tag">🚀 CEO &amp; Founder: Sahlan Hasan</div>
     </header>
 
     <div class="chat-container" id="chat-box">
@@ -346,7 +316,7 @@
       sidebar.classList.toggle('active');
     });
 
-    // Also toggle sidebar when clicking the sidebar logo so that it expands to show at least the NF logo
+    // Also expand sidebar when clicking the sidebar logo so the full NF logo is visible on the left
     sidebarLogo.addEventListener('click', () => {
       sidebar.classList.add('active');
     });
