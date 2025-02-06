@@ -226,7 +226,7 @@
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
     
-    /* Style the SVG for a cooler hover effect */
+    /* Style the SVG for a cool hover effect */
     #send-btn svg {
       width: 18px;
       fill: white;
@@ -267,7 +267,7 @@
       /* Header: ensure side-by-side layout for menu button, title, and CEO tag */
       .header {
         flex-wrap: nowrap;
-        padding: 10px 15px;
+        padding: 8px 10px;  /* Reduced header padding */
       }
       .header-title {
         font-size: 1.2rem;
@@ -281,7 +281,7 @@
       
       /* --- Input Area Adjustments for Mobile --- */
       .input-container {
-        padding: 10px;
+        padding: 8px;  /* Reduced padding */
       }
       .input-wrapper {
         gap: 8px;
@@ -301,9 +301,14 @@
       #send-btn svg {
         width: 24px;
       }
-      /* Optionally, add a slight scaling hover effect on the button */
+      /* Slight scaling hover effect on the button */
       #send-btn:hover svg {
         transform: scale(1.3);
+      }
+      
+      /* Reduce chat container padding to save vertical space */
+      .chat-container {
+        padding: 12px;
       }
     }
   </style>
