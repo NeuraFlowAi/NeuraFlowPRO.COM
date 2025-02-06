@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="https://schema.org/SoftwareApplication">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuraFlow AI - Advanced Artificial Intelligence Solution</title>
-    <meta name="description" content="NeuraFlow AI: World's most advanced AI assistant with neural processing capabilities. Developed by Sahlan Hasan.">
-    <meta name="keywords" content="AI, Artificial Intelligence, NeuraFlow, Neural Network, Machine Learning">
-    <meta itemprop="name" content="NeuraFlow AI">
-    <meta itemprop="description" content="Advanced AI solution for modern problems">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>NeuraFlow AI Pro</title>
     <style>
-        /* === Base Reset === */
+        /* === Enhanced Base Styles === */
         * {
             margin: 0;
             padding: 0;
@@ -18,212 +13,339 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        /* === Neon Logo Styles === */
-        .logo-container {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            animation: neonPulse 2s infinite alternate;
-        }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px #3b82f6);
-        }
-
-        @keyframes neonPulse {
-            from {
-                filter: drop-shadow(0 0 5px #3b82f6);
-            }
-            to {
-                filter: drop-shadow(0 0 15px #3b82f6);
-            }
-        }
-
-        /* === Mobile-First Design === */
-        .container {
-            min-height: 100vh;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
+        body {
             background: #0f172a;
             color: #f8fafc;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* === Enhanced Header === */
-        .header {
-            padding: 1rem;
+        /* === Premium Sidebar === */
+        .sidebar {
+            position: fixed;
+            left: -280px;
+            top: 0;
+            height: 100%;
+            width: 280px;
             background: #1e293b;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            gap: 1rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            border-right: 1px solid #334155;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.2);
         }
 
-        .mobile-menu-btn {
-            display: none;
+        .sidebar.active {
+            transform: translateX(280px);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* === Header Styles === */
+        .header {
+            padding: 15px 20px;
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .menu-button {
             background: none;
             border: none;
             color: #818cf8;
             font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            flex: 0 0 auto;
         }
 
-        /* === Premium Sidebar (Mobile Optimized) === */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #1e293b;
-            z-index: 1000;
-            transition: 0.3s;
-            overflow-y: auto;
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            position: relative;
+            margin: 0 20px;
         }
 
-        .sidebar.active {
-            left: 0;
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            }
         }
 
-        /* === Chat Interface === */
+        .header-title::after {
+            content: "AI";
+            font-size: 0.8em;
+            vertical-align: super;
+            color: #8b5cf6;
+            margin-left: 4px;
+        }
+
+        .ceo-tag {
+            font-size: 0.9rem;
+            color: #818cf8;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #4f46e5;
+            flex: 0 0 auto;
+        }
+
+        /* === Enhanced Chat Interface === */
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         .chat-container {
-            padding: 1rem;
+            flex: 1;
+            padding: 24px;
             overflow-y: auto;
             background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
         }
 
-        /* === Responsive Input System === */
-        .input-container {
-            padding: 1rem;
-            background: #1e293b;
+        .message {
+            max-width: 75%;
+            margin: 16px 0;
+            padding: 16px 20px;
+            border-radius: 15px;
+            animation: messageAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            line-height: 1.5;
+            position: relative;
         }
 
+        .user-message {
+            background: #1e3a8a;
+            margin-left: auto;
+            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3);
+        }
+
+        .bot-message {
+            background: #1e293b;
+            border: 1px solid #334155;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* === Premium Input System === */
+        .input-container {
+            padding: 20px;
+            background: #1e293b;
+            border-top: 1px solid #334155;
+            position: relative;
+        }
+
+        .input-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #user-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        #send-btn {
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* === Animations === */
+        @keyframes messageAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* === Mobile Excellence === */
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
+            .sidebar {
+                width: 85%;
+                left: -85%;
             }
-            
+
+            .sidebar.active {
+                transform: translateX(85%);
+            }
+
             .header-title {
-                text-align: center;
                 font-size: 1.2rem;
+                margin: 0 10px;
             }
-            
+
             .ceo-tag {
                 display: none;
             }
-            
-            .logo-container {
-                width: 60px;
-                height: 60px;
-            }
-        }
 
-        /* === SEO Rich Snippet Markup === */
-        .structured-data {
-            display: none;
+            .message {
+                max-width: 90%;
+            }
+
+            .input-wrapper {
+                padding: 0 10px;
+            }
+
+            #send-btn {
+                padding: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Structured Data for SEO -->
-    <div class="structured-data" itemprop="applicationCategory" content="Artificial Intelligence">
-        <meta itemprop="operatingSystem" content="Web">
-        <link itemprop="downloadUrl" href="https://neuraflow.ai">
-        <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <meta itemprop="name" content="Sahlan Hasan">
+    <!-- Premium Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo">
+            <h2 style="color: #e0e7ff">Neura Logs</h2>
         </div>
-    </div>
+        <ul class="conversation-list" id="conversation-list"></ul>
+    </nav>
 
-    <!-- Mobile First Interface -->
+    <!-- Main Interface -->
     <div class="container">
         <header class="header">
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <button id="menu-button" class="menu-button">
                 ☰
             </button>
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" 
-                     alt="NeuraFlow AI Logo" 
-                     class="logo-img"
-                     itemprop="image">
-            </div>
+            <div class="header-title">Neuro Flow</div>
             <div class="ceo-tag">🚀 CEO & Founder: Sahlan Hasan</div>
         </header>
 
-        <!-- Main Chat Interface -->
-        <main class="chat-container" id="chat-box">
+        <div class="chat-container" id="chat-box">
             <div class="message bot-message">
-                🤖 Neural Network Initialized - Ready for Processing
+                🤖 Neural Matrix Initializing... Ready for Cognitive Input
             </div>
-        </main>
+        </div>
 
-        <!-- Mobile-Optimized Input -->
         <div class="input-container">
             <div class="input-wrapper">
-                <input type="text" id="user-input" 
-                       placeholder="Enter your query..." 
-                       aria-label="AI Input Field">
+                <input type="text" id="user-input" placeholder="Enter neural query...">
                 <button id="send-btn">
-                    <i class="fas fa-paper-plane"></i>
+                    <span>Send</span>
+                    <svg style="width: 18px; fill: white" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Sidebar -->
-    <nav class="sidebar" id="mobile-sidebar">
-        <div class="sidebar-header">
-            <div class="logo-container">
-                <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" 
-                     alt="NeuraFlow Logo" 
-                     class="logo-img">
-            </div>
-            <h2>NeuraFlow Logs</h2>
-            <button id="close-sidebar">×</button>
-        </div>
-        <ul class="conversation-list" id="conversation-list"></ul>
-    </nav>
-
     <script>
-        // Mobile Navigation
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileSidebar = document.getElementById('mobile-sidebar');
-        const closeSidebarBtn = document.getElementById('close-sidebar');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileSidebar.classList.add('active');
-        });
-
-        closeSidebarBtn.addEventListener('click', () => {
-            mobileSidebar.classList.remove('active');
-        });
-
-        // Chat Functionality
+        // Enhanced Functionality
+        const sidebar = document.querySelector('.sidebar');
+        const menuButton = document.getElementById('menu-button');
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
+        const conversationList = document.getElementById('conversation-list');
 
+        // Toggle Premium Sidebar
+        menuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Enhanced Message Handling
         function addMessage(text, isUser) {
             const message = document.createElement('div');
             message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
             message.innerHTML = `
-                <div class="message-content">
-                    ${isUser ? '👤' : '🤖'} ${text}
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    ${isUser ? '👤' : '🤖'} 
+                    <span>${text}</span>
                 </div>
             `;
             chatBox.appendChild(message);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        sendBtn.addEventListener('click', () => {
+        function handleInput() {
             const text = userInput.value.trim();
-            if (text) {
-                addMessage(text, true);
-                userInput.value = '';
-                setTimeout(() => {
-                    addMessage("Neural processors analyzing... Enhanced response system loading...", false);
-                }, 800);
+            if (!text) return;
+
+            // Add to history
+            const historyItem = document.createElement('li');
+            historyItem.textContent = text;
+            historyItem.style.padding = '12px';
+            historyItem.style.color = '#e0e7ff';
+            conversationList.appendChild(historyItem);
+
+            // Add messages
+            addMessage(text, true);
+            userInput.value = '';
+
+            setTimeout(() => {
+                addMessage("🧠 Neural Processors Calibrating... ⚙️ System Upgrade in Progress... 🚀 Stay Tuned!", false);
+            }, 800);
+        }
+
+        // Event Listeners
+        sendBtn.addEventListener('click', handleInput);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleInput();
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
+                sidebar.classList.remove('active');
             }
         });
     </script>
