@@ -65,30 +65,28 @@
       object-fit: cover;
       cursor: pointer;
     }
-    /* Conversation list takes available space and scrolls if needed */
-    .conversation-list {
-      flex: 1;
-      overflow-y: auto;
-    }
-    /* Sidebar footer sticky to bottom */
-    .sidebar-footer {
-      position: sticky;
-      bottom: 0;
-      padding: 16px;
-      border-top: 1px solid #334155;
+    /* NEW: Sidebar Menu Container for About Us option, placed immediately after header */
+    .sidebar-menu {
+      padding: 10px;
       text-align: center;
-      background: #1e293b;
-      z-index: 10;
+      border-bottom: 1px solid #334155;
     }
-    .sidebar-footer a {
+    .sidebar-menu a {
       color: #818cf8;
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s ease;
     }
-    .sidebar-footer a:hover {
+    .sidebar-menu a:hover {
       color: #6366f1;
     }
+    /* Conversation list takes available space and scrolls if needed */
+    .conversation-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+    /* (Optional) If you still want a footer later, you can re-add it here.
+       For now, the About Us link is in the .sidebar-menu container. */
 
     /* === Header Styles === */
     .header {
@@ -148,7 +146,6 @@
         text-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
       }
     }
-    /* --------------------------- */
     .ceo-tag {
       font-size: 0.9rem;
       color: #818cf8;
@@ -236,7 +233,6 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
-    /* Style the SVG for a cool hover effect */
     #send-btn svg {
       width: 18px;
       fill: white;
@@ -245,7 +241,6 @@
     #send-btn:hover svg {
       transform: scale(1.2);
     }
-    /* === Animations === */
     @keyframes messageAppear {
       0% {
         opacity: 0;
@@ -299,11 +294,9 @@
 
     /* === Mobile Excellence === */
     @media (max-width: 768px) {
-      /* Allow vertical scrolling on mobile */
       body {
         overflow-y: auto;
       }
-      /* Sidebar fixed width remains */
       .sidebar {
         width: 280px;
         left: -280px;
@@ -311,7 +304,6 @@
       .sidebar.active {
         transform: translateX(280px);
       }
-      /* Header: reduce padding for a more compact layout */
       .header {
         flex-wrap: nowrap;
         padding: 8px 10px;
@@ -324,7 +316,6 @@
         font-size: 0.7rem;
         padding: 4px 10px;
       }
-      /* Fix the input container to the bottom so it's always visible */
       .input-container {
         position: fixed;
         bottom: 0;
@@ -335,7 +326,6 @@
         background: #1e293b;
         border-top: 1px solid #334155;
       }
-      /* Reduce gap and padding in the input area */
       .input-wrapper {
         gap: 8px;
       }
@@ -346,21 +336,18 @@
       #send-btn {
         padding: 10px 16px;
       }
-      /* Hide the send text so only the SVG icon is shown */
       #send-btn span {
         display: none;
       }
-      /* Increase the SVG icon size for a cool look */
       #send-btn svg {
         width: 24px;
       }
       #send-btn:hover svg {
         transform: scale(1.3);
       }
-      /* Reduce chat container padding and add extra bottom padding so messages don't hide behind the fixed input */
       .chat-container {
         padding: 12px;
-        padding-bottom: 70px; /* Reserve space for the fixed input container */
+        padding-bottom: 70px;
       }
     }
   </style>
@@ -373,18 +360,17 @@
       <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">Neura Logs</h2>
     </div>
-    <ul class="conversation-list" id="conversation-list"></ul>
-    <!-- Sidebar Footer with About Us Option -->
-    <div class="sidebar-footer">
+    <!-- NEW: Sidebar Menu container with About Us option placed immediately after header -->
+    <div class="sidebar-menu">
       <a href="#" id="about-us-link">About Us</a>
     </div>
+    <ul class="conversation-list" id="conversation-list"></ul>
   </nav>
 
   <!-- Main Interface -->
   <div class="container">
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
-      <!-- Updated header title: "Neuro" over "Flow" with "AI" at the right center -->
       <div class="header-title">
         <div class="header-title-main">
           <span class="header-title-neuro">Neuro</span>
@@ -435,7 +421,6 @@
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const conversationList = document.getElementById('conversation-list');
-    // Sidebar logo element for toggling full view
     const sidebarLogo = document.getElementById('sidebar-logo');
     const aboutUsLink = document.getElementById('about-us-link');
     const aboutModal = document.getElementById('aboutModal');
@@ -446,7 +431,7 @@
       sidebar.classList.toggle('active');
     });
 
-    // Also expand sidebar when clicking the sidebar logo so the full NF logo is visible on the left
+    // Expand sidebar when clicking the sidebar logo
     sidebarLogo.addEventListener('click', () => {
       sidebar.classList.add('active');
     });
@@ -468,24 +453,18 @@
     function handleInput() {
       const text = userInput.value.trim();
       if (!text) return;
-
-      // Add to history
       const historyItem = document.createElement('li');
       historyItem.textContent = text;
       historyItem.style.padding = '12px';
       historyItem.style.color = '#e0e7ff';
       conversationList.appendChild(historyItem);
-
-      // Add messages
       addMessage(text, true);
       userInput.value = '';
-
       setTimeout(() => {
         addMessage("🧠 Neural Processors Calibrating... ⚙️ System Upgrade in Progress... 🚀 Stay Tuned!", false);
       }, 800);
     }
 
-    // Event Listeners
     sendBtn.addEventListener('click', handleInput);
     userInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') handleInput();
@@ -516,3 +495,4 @@
   </script>
 </body>
 </html>
+
