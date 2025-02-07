@@ -26,7 +26,7 @@
 
     /* Using a new dark background with teal accents */
     body {
-      background: #0a0f1c; /* updated from #0f172a */
+      background: #0a0f1c;
       color: #f8fafc;
       height: 100vh;
       overflow-x: hidden;
@@ -40,10 +40,10 @@
       top: 0;
       height: 100vh;
       width: 280px;
-      background: #121926; /* updated from #1e293b */
+      background: #121926;
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
-      border-right: 1px solid #1e2a38; /* updated from #334155 */
+      border-right: 1px solid #1e2a38;
       box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
@@ -53,7 +53,7 @@
     }
     .sidebar-header {
       padding: 24px;
-      border-bottom: 1px solid #1e2a38; /* updated from #334155 */
+      border-bottom: 1px solid #1e2a38;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -69,16 +69,16 @@
     .sidebar-menu {
       padding: 10px;
       text-align: center;
-      border-bottom: 1px solid #1e2a38; /* updated from #334155 */
+      border-bottom: 1px solid #1e2a38;
     }
     .sidebar-menu a {
-      color: #00adb5; /* updated from #818cf8 */
+      color: #00adb5;
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s ease;
     }
     .sidebar-menu a:hover {
-      color: #00d0ff; /* updated from #6366f1 */
+      color: #00d0ff;
     }
     /* Conversation list takes available space and scrolls if needed */
     .conversation-list {
@@ -88,8 +88,8 @@
     /* === Header Styles === */
     .header {
       padding: 15px 20px;
-      background: #121926; /* updated from #1e293b */
-      border-bottom: 1px solid #1e2a38; /* updated from #334155 */
+      background: #121926;
+      border-bottom: 1px solid #1e2a38;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -98,7 +98,7 @@
     .menu-button {
       background: none;
       border: none;
-      color: #00adb5; /* updated from #818cf8 */
+      color: #00adb5;
       font-size: 1.5rem;
       cursor: pointer;
       padding: 8px;
@@ -106,7 +106,7 @@
       transition: background 0.2s;
       flex: 0 0 auto;
     }
-    /* --- Updated Header Title --- */
+    /* --- Updated Header Title with Cool Gradient and White Mixture --- */
     .header-title {
       flex: 1;
       display: inline-flex;
@@ -122,18 +122,19 @@
       text-align: right;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      /* New gradient using teal hues */
-      background: linear-gradient(45deg, #00adb5, #00838f, #005662);
+      background: linear-gradient(45deg, #ffffff, #00adb5, #00838f, #005662, #ffffff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
     }
     .header-title-ai {
       font-size: 1.5rem;
-      background: linear-gradient(45deg, #00adb5, #00838f, #005662);
+      background: linear-gradient(45deg, #ffffff, #00adb5, #00838f, #005662, #ffffff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
       animation: titleGlow 3s ease-in-out infinite;
     }
     @keyframes titleGlow {
@@ -146,11 +147,11 @@
     }
     .ceo-tag {
       font-size: 0.9rem;
-      color: #00adb5; /* updated from #818cf8 */
-      background: rgba(0, 173, 181, 0.1); /* updated from rgba(99,102,241,0.1) */
+      color: #00adb5;
+      background: rgba(0, 173, 181, 0.1);
       padding: 8px 15px;
       border-radius: 20px;
-      border: 1px solid #00adb5; /* updated from #4f46e5 */
+      border: 1px solid #00adb5;
       flex: 0 0 auto;
       white-space: nowrap;
     }
@@ -165,7 +166,6 @@
       flex: 1;
       padding: 24px;
       overflow-y: auto;
-      /* New gradient background for chat */
       background: linear-gradient(160deg, #0a0f1c 0%, #121926 100%);
     }
     .message {
@@ -178,21 +178,21 @@
       position: relative;
     }
     .user-message {
-      background: #007c91; /* updated from #1e3a8a */
+      background: #007c91;
       margin-left: auto;
       box-shadow: 0 2px 8px rgba(0, 123, 145, 0.3);
     }
     .bot-message {
-      background: #121926; /* updated from #1e293b */
-      border: 1px solid #1e2a38; /* updated from #334155 */
+      background: #121926;
+      border: 1px solid #1e2a38;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* === Premium Input System === */
     .input-container {
       padding: 20px;
-      background: #121926; /* updated from #1e293b */
-      border-top: 1px solid #1e2a38; /* updated from #334155 */
+      background: #121926;
+      border-top: 1px solid #1e2a38;
       position: relative;
     }
     .input-wrapper {
@@ -205,20 +205,20 @@
     #user-input {
       flex: 1;
       padding: 14px 20px;
-      border: 1px solid #1e2a38; /* updated from #334155 */
+      border: 1px solid #1e2a38;
       border-radius: 12px;
-      background: #0a0f1c; /* updated from #0f172a */
+      background: #0a0f1c;
       color: #f8fafc;
       font-size: 1rem;
       transition: all 0.3s ease;
     }
     #user-input:focus {
-      border-color: #00adb5; /* updated from #6366f1 */
-      box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2); /* updated from rgba(99,102,241,0.2) */
+      border-color: #00adb5;
+      box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2);
     }
     #send-btn {
       padding: 14px 24px;
-      background: linear-gradient(135deg, #00adb5, #00838f); /* updated from gradient of blues */
+      background: linear-gradient(135deg, #00adb5, #00838f);
       border: none;
       border-radius: 12px;
       color: white;
@@ -230,7 +230,7 @@
     }
     #send-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3); /* updated from rgba(99,102,241,0.3) */
+      box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
     }
     #send-btn svg {
       width: 18px;
@@ -264,10 +264,10 @@
       background-color: rgba(0, 0, 0, 0.5);
     }
     .modal-content {
-      background-color: #121926; /* updated from #1e293b */
+      background-color: #121926;
       margin: 10% auto;
       padding: 20px;
-      border: 1px solid #1e2a38; /* updated from #334155 */
+      border: 1px solid #1e2a38;
       width: 80%;
       max-width: 600px;
       border-radius: 8px;
@@ -281,14 +281,14 @@
       line-height: 1.6;
     }
     .close {
-      color: #00adb5; /* updated from #818cf8 */
+      color: #00adb5;
       float: right;
       font-size: 1.5rem;
       font-weight: bold;
       cursor: pointer;
     }
     .close:hover {
-      color: #00d0ff; /* updated from #6366f1 */
+      color: #00d0ff;
     }
 
     /* === Mobile Excellence === */
@@ -322,8 +322,8 @@
         right: 0;
         padding: 8px 10px;
         z-index: 1000;
-        background: #121926; /* updated from #1e293b */
-        border-top: 1px solid #1e2a38; /* updated from #334155 */
+        background: #121926;
+        border-top: 1px solid #1e2a38;
       }
       .input-wrapper {
         gap: 8px;
