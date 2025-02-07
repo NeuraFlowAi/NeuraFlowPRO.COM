@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>NeuraFlow AI Pro</title>
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Neura Flow AI Pro - A cutting-edge AI platform by Sahlan Hasan, revolutionizing neural networks and artificial intelligence technology.">
-  <meta name="keywords" content="Neura Flow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
+  <meta name="description" content="NeuraFlow AI Pro - A cutting-edge AI platform by Sahlan Hasan, revolutionizing neural networks and artificial intelligence technology.">
+  <meta name="keywords" content="NeuraFlow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yourwebsite.com"> <!-- Replace with your actual domain -->
   <meta property="og:title" content="NeuraFlow AI Pro">
@@ -31,7 +31,7 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* === Sidebar (unchanged UI for header logo) === */
+    /* === Sidebar (header logo UI remains unchanged) === */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -63,10 +63,10 @@
       object-fit: cover;
       cursor: pointer;
     }
-    /* Original sidebar header text (UI unchanged) */
     .sidebar-header h2 {
       color: #e0e7ff;
       font-size: 1.25rem;
+      font-weight: bold;
     }
     .sidebar-menu {
       padding: 10px;
@@ -96,6 +96,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
+      overflow-x: hidden;
     }
     .menu-button {
       background: none;
@@ -110,41 +111,32 @@
     }
     .header-title {
       flex: 1;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       margin: 0 10px;
+      overflow-x: hidden;
     }
-    /* Updated header title: premium gradient (teal to white) with subtle shadow */
-    .header-title-main,
-    .header-title-ai {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(45deg, #00adb5, #ffffff);
+    /* Updated header title as a single element "NeuraFlow AI" with a premium gradient */
+    .header-title-main {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #00adb5, #ffffff, #00adb5);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
-    .header-title-ai {
-      animation: titleGlow 3s ease-in-out infinite;
-    }
-    @keyframes titleGlow {
-      0%, 100% {
-        text-shadow: 0 0 10px rgba(0, 173, 181, 0.3);
-      }
-      50% {
-        text-shadow: 0 0 20px rgba(0, 173, 181, 0.6);
-      }
-    }
+    /* Upgraded CEO & Founder Tag */
     .ceo-tag {
-      font-size: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, rgba(0,173,181,0.15), rgba(0,173,181,0.05));
+      padding: 10px 16px;
+      border-radius: 25px;
+      border: 2px solid #00adb5;
       color: #00adb5;
-      background: rgba(0, 173, 181, 0.1);
-      padding: 8px 15px;
-      border-radius: 20px;
-      border: 1px solid #00adb5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       white-space: nowrap;
     }
 
@@ -218,7 +210,7 @@
       border-color: #00adb5;
       box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2);
     }
-    /* Redesigned circular send button with updated send arrow (ChatGPT-like) */
+    /* Redesigned circular send button with updated send arrow */
     #send-btn {
       width: 50px;
       height: 50px;
@@ -236,11 +228,9 @@
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
     }
-    /* Remove any inner text */
     #send-btn span {
       display: none;
     }
-    /* New send arrow icon using a ChatGPT-like paper plane (Feather icon style) */
     #send-btn svg {
       width: 24px;
       height: 24px;
@@ -297,27 +287,21 @@
 
     /* === Mobile Styles === */
     @media (max-width: 768px) {
-      body {
-        overflow-y: auto;
-      }
-      .sidebar {
-        width: 280px;
-        left: -280px;
-      }
-      .sidebar.active {
-        transform: translateX(280px);
-      }
       .header {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         padding: 8px 10px;
       }
       .header-title {
-        font-size: 1.2rem;
-        margin: 0 10px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .header-title-main {
+        font-size: 1.6rem;
       }
       .ceo-tag {
-        font-size: 0.7rem;
-        padding: 4px 10px;
+        font-size: 0.9rem;
+        padding: 6px 12px;
       }
       .input-container {
         position: fixed;
@@ -352,7 +336,7 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar (header logo UI remains as in the original) -->
+  <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
       <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
@@ -369,10 +353,7 @@
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
       <div class="header-title">
-        <div class="header-title-main">
-          <span class="header-title-neuro">Neuro</span><span class="header-title-flow">Flow</span>
-        </div>
-        <div class="header-title-ai">AI</div>
+        <span class="header-title-main">NeuraFlow AI</span>
       </div>
       <div class="ceo-tag">CEO &amp; Founder: Sahlan Hasan</div>
     </header>
@@ -387,7 +368,6 @@
       <div class="input-wrapper">
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
-          <!-- Updated send arrow icon -->
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-send" viewBox="0 0 24 24">
             <line x1="22" y1="2" x2="11" y2="13"></line>
             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
