@@ -70,13 +70,15 @@
       flex: 1;
       overflow-y: auto;
     }
-    /* Sidebar footer pinned at the bottom using margin-top: auto */
+    /* Sidebar footer sticky to bottom */
     .sidebar-footer {
-      margin-top: auto;
+      position: sticky;
+      bottom: 0;
       padding: 16px;
       border-top: 1px solid #334155;
       text-align: center;
       background: #1e293b;
+      z-index: 10;
     }
     .sidebar-footer a {
       color: #818cf8;
