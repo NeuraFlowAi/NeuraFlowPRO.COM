@@ -31,7 +31,7 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* === Sidebar === */
+    /* === Sidebar (unchanged UI for header logo) === */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -63,13 +63,11 @@
       object-fit: cover;
       cursor: pointer;
     }
-    /* Updated sidebar header text */
+    /* Original sidebar header text (UI unchanged) */
     .sidebar-header h2 {
-      color: #c5c8ce;
-      font-weight: bold;
+      color: #e0e7ff;
       font-size: 1.25rem;
     }
-    /* Sidebar Menu */
     .sidebar-menu {
       padding: 10px;
       text-align: center;
@@ -110,7 +108,6 @@
       transition: background 0.2s;
       flex: 0 0 auto;
     }
-    /* --- Bold & Cool Header Title --- */
     .header-title {
       flex: 1;
       display: inline-flex;
@@ -119,17 +116,16 @@
       gap: 10px;
       margin: 0 10px;
     }
-    .header-title-main, 
+    /* Updated header title: premium gradient (teal to white) with subtle shadow */
+    .header-title-main,
     .header-title-ai {
+      font-size: 1.5rem;
       font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      background: linear-gradient(45deg, #ffffff, #00adb5 30%, #00838f 70%, #ffffff);
+      background: linear-gradient(45deg, #00adb5, #ffffff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      /* Added a subtle shadow for thickness */
-      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
     .header-title-ai {
       animation: titleGlow 3s ease-in-out infinite;
@@ -152,7 +148,7 @@
       white-space: nowrap;
     }
 
-    /* === Chat Interface === */
+    /* === Chat Container === */
     .container {
       height: 100vh;
       display: flex;
@@ -222,7 +218,7 @@
       border-color: #00adb5;
       box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2);
     }
-    /* --- Redesigned Circular Send Button --- */
+    /* Redesigned circular send button with updated send arrow (ChatGPT-like) */
     #send-btn {
       width: 50px;
       height: 50px;
@@ -240,14 +236,19 @@
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
     }
-    /* Remove extra text (if any) inside send button */
+    /* Remove any inner text */
     #send-btn span {
       display: none;
     }
+    /* New send arrow icon using a ChatGPT-like paper plane (Feather icon style) */
     #send-btn svg {
       width: 24px;
       height: 24px;
-      fill: white;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       transition: transform 0.2s ease;
     }
     #send-btn:hover svg {
@@ -351,11 +352,11 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
+  <!-- Sidebar (header logo UI remains as in the original) -->
   <nav class="sidebar">
     <div class="sidebar-header">
       <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
-      <h2>NeuraFlow</h2>
+      <h2 style="color: #e0e7ff">NeuraFlow</h2>
     </div>
     <div class="sidebar-menu">
       <a href="#" id="about-us-link">About Us</a>
@@ -369,7 +370,7 @@
       <button id="menu-button" class="menu-button">☰</button>
       <div class="header-title">
         <div class="header-title-main">
-          <span>Neuro</span><span>Flow</span>
+          <span class="header-title-neuro">Neuro</span><span class="header-title-flow">Flow</span>
         </div>
         <div class="header-title-ai">AI</div>
       </div>
@@ -386,9 +387,10 @@
       <div class="input-wrapper">
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
-          <!-- Only the arrow icon is visible inside the circular send button -->
-          <svg viewBox="0 0 24 24">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          <!-- Updated send arrow icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-send" viewBox="0 0 24 24">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
         </button>
       </div>
@@ -447,7 +449,7 @@
       const historyItem = document.createElement('li');
       historyItem.textContent = text;
       historyItem.style.padding = '12px';
-      historyItem.style.color = '#c5c8ce';
+      historyItem.style.color = '#e0e7ff';
       conversationList.appendChild(historyItem);
       addMessage(text, true);
       userInput.value = '';
