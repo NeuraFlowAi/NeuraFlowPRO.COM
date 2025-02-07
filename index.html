@@ -33,7 +33,7 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* === Premium Sidebar === */
+    /* === Premium Sidebar using Flex Layout === */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -45,8 +45,8 @@
       z-index: 1000;
       border-right: 1px solid #334155;
       box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-      /* Using relative positioning to anchor the footer absolutely */
-      position: fixed;
+      display: flex;
+      flex-direction: column;
     }
     .sidebar.active {
       transform: translateX(280px);
@@ -65,16 +65,18 @@
       object-fit: cover;
       cursor: pointer;
     }
-    /* Sidebar footer positioned absolutely at the bottom */
+    /* Conversation list takes available space and scrolls if needed */
+    .conversation-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+    /* Sidebar footer pinned to bottom */
     .sidebar-footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
       padding: 16px;
       border-top: 1px solid #334155;
       text-align: center;
       background: #1e293b;
+      margin-top: auto;
     }
     .sidebar-footer a {
       color: #818cf8;
@@ -299,7 +301,7 @@
       body {
         overflow-y: auto;
       }
-      /* Sidebar adjustments: keep fixed 280px width so the full NF logo appears */
+      /* Sidebar adjustments: fixed width remains */
       .sidebar {
         width: 280px;
         left: -280px;
@@ -393,7 +395,7 @@
 
     <div class="chat-container" id="chat-box">
       <div class="message bot-message">
-        Neural Matrix Initializing... Ready for Cognitive Input
+        🤖 Neural Matrix Initializing... Ready for Cognitive Input
       </div>
     </div>
 
@@ -477,7 +479,7 @@
       userInput.value = '';
 
       setTimeout(() => {
-        addMessage("Neural Processors Calibrating... System Upgrade in Progress... Stay Tuned!", false);
+        addMessage("🧠 Neural Processors Calibrating... ⚙️ System Upgrade in Progress... 🚀 Stay Tuned!", false);
       }, 800);
     }
 
