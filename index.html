@@ -45,6 +45,9 @@
       z-index: 1000;
       border-right: 1px solid #334155;
       box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .sidebar.active {
       transform: translateX(280px);
@@ -62,6 +65,20 @@
       border-radius: 10px;
       object-fit: cover;
       cursor: pointer;
+    }
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid #334155;
+      text-align: center;
+    }
+    .sidebar-footer a {
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    .sidebar-footer a:hover {
+      color: #6366f1;
     }
 
     /* === Header Styles === */
@@ -231,6 +248,46 @@
       }
     }
 
+    /* === Modal Styles === */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #1e293b;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #334155;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 8px;
+      color: #f8fafc;
+    }
+    .modal-content h2 {
+      margin-bottom: 16px;
+    }
+    .modal-content p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .close {
+      color: #818cf8;
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: #6366f1;
+    }
+
     /* === Mobile Excellence === */
     @media (max-width: 768px) {
       /* Allow vertical scrolling on mobile */
@@ -308,6 +365,10 @@
       <h2 style="color: #e0e7ff">Neura Logs</h2>
     </div>
     <ul class="conversation-list" id="conversation-list"></ul>
+    <!-- Sidebar Footer with About Us Option -->
+    <div class="sidebar-footer">
+      <a href="#" id="about-us-link">About Us</a>
+    </div>
   </nav>
 
   <!-- Main Interface -->
@@ -322,12 +383,12 @@
         </div>
         <div class="header-title-ai">AI</div>
       </div>
-      <div class="ceo-tag">🚀 CEO &amp; Founder: Sahlan Hasan</div>
+      <div class="ceo-tag">CEO &amp; Founder: Sahlan Hasan</div>
     </header>
 
     <div class="chat-container" id="chat-box">
       <div class="message bot-message">
-        🤖 Neural Matrix Initializing... Ready for Cognitive Input
+        Neural Matrix Initializing... Ready for Cognitive Input
       </div>
     </div>
 
@@ -344,6 +405,19 @@
     </div>
   </div>
 
+  <!-- About Us Modal -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="about-close">&times;</span>
+      <h2>About NeuraFlow AI</h2>
+      <p>At NeuraFlow AI, we are revolutionizing the way people interact with artificial intelligence. Our cutting-edge technology is designed to enhance productivity, streamline decision-making, and unlock new possibilities across various industries.</p>
+      <p>Founded by Sahlan Hasan, an innovator passionate about AI and automation, NeuraFlow AI specializes in advanced machine learning, automation, and data-driven insights. Our products and services empower individuals, businesses, and organizations to harness the full potential of AI for smarter workflows and innovative problem-solving.</p>
+      <p>We are committed to pushing the boundaries of artificial intelligence, ensuring our solutions are not only powerful but also accessible, ethical, and user-friendly. Whether you are an entrepreneur, developer, or enterprise, NeuraFlow AI is here to drive the future of AI innovation with you.</p>
+      <p>Join us on our journey as we shape the next era of intelligent technology.</p>
+      <p>Welcome to NeuraFlow AI – The Future, Flowing with Intelligence.</p>
+    </div>
+  </div>
+
   <script>
     // Enhanced Functionality
     const sidebar = document.querySelector('.sidebar');
@@ -354,6 +428,9 @@
     const conversationList = document.getElementById('conversation-list');
     // Sidebar logo element for toggling full view
     const sidebarLogo = document.getElementById('sidebar-logo');
+    const aboutUsLink = document.getElementById('about-us-link');
+    const aboutModal = document.getElementById('aboutModal');
+    const aboutClose = document.getElementById('about-close');
 
     // Toggle Premium Sidebar when menu button is clicked
     menuButton.addEventListener('click', () => {
@@ -395,7 +472,7 @@
       userInput.value = '';
 
       setTimeout(() => {
-        addMessage("🧠 Neural Processors Calibrating... ⚙️ System Upgrade in Progress... 🚀 Stay Tuned!", false);
+        addMessage("Neural Processors Calibrating... System Upgrade in Progress... Stay Tuned!", false);
       }, 800);
     }
 
@@ -403,6 +480,22 @@
     sendBtn.addEventListener('click', handleInput);
     userInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') handleInput();
+    });
+
+    // About Us Modal Handling
+    aboutUsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      aboutModal.style.display = 'block';
+    });
+
+    aboutClose.addEventListener('click', () => {
+      aboutModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === aboutModal) {
+        aboutModal.style.display = 'none';
+      }
     });
 
     // Close sidebar when clicking outside
