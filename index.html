@@ -10,21 +10,19 @@
   <meta name="keywords" content="Neura Flow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yourwebsite.com"> <!-- Replace with your actual domain -->
-  <meta property="og:title" content="Neura Flow AI Pro">
-  <meta property="og:description" content="Neura Flow AI Pro - A cutting-edge AI platform by Sahlan Hasan.">
+  <meta property="og:title" content="NeuraFlow AI Pro">
+  <meta property="og:description" content="NeuraFlow AI Pro - A cutting-edge AI platform by Sahlan Hasan.">
   <meta property="og:image" content="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png">
   <meta property="og:url" content="https://yourwebsite.com">
   
   <style>
-    /* === Enhanced Base Styles === */
+    /* === Base Styles === */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', system-ui, sans-serif;
     }
-
-    /* Using a new dark background with teal accents */
     body {
       background: #0a0f1c;
       color: #f8fafc;
@@ -33,7 +31,7 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* === Premium Sidebar using Flex Layout === */
+    /* === Sidebar === */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -65,7 +63,13 @@
       object-fit: cover;
       cursor: pointer;
     }
-    /* NEW: Sidebar Menu Container for About Us option, placed immediately after header */
+    /* Updated sidebar header text */
+    .sidebar-header h2 {
+      color: #c5c8ce;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+    /* Sidebar Menu */
     .sidebar-menu {
       padding: 10px;
       text-align: center;
@@ -80,12 +84,12 @@
     .sidebar-menu a:hover {
       color: #00d0ff;
     }
-    /* Conversation list takes available space and scrolls if needed */
     .conversation-list {
       flex: 1;
       overflow-y: auto;
     }
-    /* === Header Styles === */
+
+    /* === Header === */
     .header {
       padding: 15px 20px;
       background: #121926;
@@ -106,7 +110,7 @@
       transition: background 0.2s;
       flex: 0 0 auto;
     }
-    /* --- Updated Header Title with Cool Gradient and White Mixture --- */
+    /* --- Bold & Cool Header Title --- */
     .header-title {
       flex: 1;
       display: inline-flex;
@@ -115,26 +119,19 @@
       gap: 10px;
       margin: 0 10px;
     }
-    .header-title-main {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-      text-align: right;
-      font-size: 1.5rem;
+    .header-title-main, 
+    .header-title-ai {
+      font-weight: 700;
+      font-size: 1.8rem;
       letter-spacing: 2px;
-      background: linear-gradient(45deg, #ffffff, #00adb5, #00838f, #005662, #ffffff);
+      background: linear-gradient(45deg, #ffffff, #00adb5 30%, #00838f 70%, #ffffff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+      /* Added a subtle shadow for thickness */
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
     }
     .header-title-ai {
-      font-size: 1.5rem;
-      background: linear-gradient(45deg, #ffffff, #00adb5, #00838f, #005662, #ffffff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
       animation: titleGlow 3s ease-in-out infinite;
     }
     @keyframes titleGlow {
@@ -152,11 +149,10 @@
       padding: 8px 15px;
       border-radius: 20px;
       border: 1px solid #00adb5;
-      flex: 0 0 auto;
       white-space: nowrap;
     }
 
-    /* === Enhanced Chat Interface === */
+    /* === Chat Interface === */
     .container {
       height: 100vh;
       display: flex;
@@ -187,8 +183,18 @@
       border: 1px solid #1e2a38;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
+    @keyframes messageAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
 
-    /* === Premium Input System === */
+    /* === Input Area === */
     .input-container {
       padding: 20px;
       background: #121926;
@@ -216,42 +222,39 @@
       border-color: #00adb5;
       box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2);
     }
+    /* --- Redesigned Circular Send Button --- */
     #send-btn {
-      padding: 14px 24px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       background: linear-gradient(135deg, #00adb5, #00838f);
       border: none;
-      border-radius: 12px;
       color: white;
       cursor: pointer;
-      transition: transform 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     #send-btn:hover {
-      transform: translateY(-1px);
+      transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
     }
+    /* Remove extra text (if any) inside send button */
+    #send-btn span {
+      display: none;
+    }
     #send-btn svg {
-      width: 18px;
+      width: 24px;
+      height: 24px;
       fill: white;
       transition: transform 0.2s ease;
     }
     #send-btn:hover svg {
       transform: scale(1.2);
     }
-    @keyframes messageAppear {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
 
-    /* === Modal Styles === */
+    /* === Modal === */
     .modal {
       display: none;
       position: fixed;
@@ -291,7 +294,7 @@
       color: #00d0ff;
     }
 
-    /* === Mobile Excellence === */
+    /* === Mobile Styles === */
     @media (max-width: 768px) {
       body {
         overflow-y: auto;
@@ -333,16 +336,12 @@
         font-size: 0.9rem;
       }
       #send-btn {
-        padding: 10px 16px;
-      }
-      #send-btn span {
-        display: none;
+        width: 45px;
+        height: 45px;
       }
       #send-btn svg {
-        width: 24px;
-      }
-      #send-btn:hover svg {
-        transform: scale(1.3);
+        width: 20px;
+        height: 20px;
       }
       .chat-container {
         padding: 12px;
@@ -352,14 +351,12 @@
   </style>
 </head>
 <body>
-  <!-- Premium Sidebar -->
+  <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <!-- Sidebar logo remains here and is clickable to expand the sidebar -->
       <img src="https://i.postimg.cc/BQzHY1KR/ad7f5b81-b3f9-4c91-b6d0-8cb526dc7bf7.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
-      <h2 style="color: #c5c8ce">Neura Logs</h2>
+      <h2>NeuraFlow</h2>
     </div>
-    <!-- NEW: Sidebar Menu container with About Us option placed immediately after header -->
     <div class="sidebar-menu">
       <a href="#" id="about-us-link">About Us</a>
     </div>
@@ -372,8 +369,7 @@
       <button id="menu-button" class="menu-button">☰</button>
       <div class="header-title">
         <div class="header-title-main">
-          <span class="header-title-neuro">Neuro</span>
-          <span class="header-title-flow">Flow</span>
+          <span>Neuro</span><span>Flow</span>
         </div>
         <div class="header-title-ai">AI</div>
       </div>
@@ -390,7 +386,7 @@
       <div class="input-wrapper">
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
-          <span>Send</span>
+          <!-- Only the arrow icon is visible inside the circular send button -->
           <svg viewBox="0 0 24 24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
           </svg>
@@ -413,7 +409,7 @@
   </div>
 
   <script>
-    // Enhanced Functionality
+    // Functionality
     const sidebar = document.querySelector('.sidebar');
     const menuButton = document.getElementById('menu-button');
     const chatBox = document.getElementById('chat-box');
@@ -425,17 +421,13 @@
     const aboutModal = document.getElementById('aboutModal');
     const aboutClose = document.getElementById('about-close');
 
-    // Toggle Premium Sidebar when menu button is clicked
     menuButton.addEventListener('click', () => {
       sidebar.classList.toggle('active');
     });
-
-    // Expand sidebar when clicking the sidebar logo
     sidebarLogo.addEventListener('click', () => {
       sidebar.classList.add('active');
     });
-
-    // Enhanced Message Handling
+    
     function addMessage(text, isUser) {
       const message = document.createElement('div');
       message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -469,23 +461,18 @@
       if (e.key === 'Enter') handleInput();
     });
 
-    // About Us Modal Handling
     aboutUsLink.addEventListener('click', (e) => {
       e.preventDefault();
       aboutModal.style.display = 'block';
     });
-
     aboutClose.addEventListener('click', () => {
       aboutModal.style.display = 'none';
     });
-
     window.addEventListener('click', (e) => {
       if (e.target === aboutModal) {
         aboutModal.style.display = 'none';
       }
     });
-
-    // Close sidebar when clicking outside
     document.addEventListener('click', (e) => {
       if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
         sidebar.classList.remove('active');
