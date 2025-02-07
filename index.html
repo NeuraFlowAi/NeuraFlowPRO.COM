@@ -45,9 +45,8 @@
       z-index: 1000;
       border-right: 1px solid #334155;
       box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      /* Using relative positioning to anchor the footer absolutely */
+      position: fixed;
     }
     .sidebar.active {
       transform: translateX(280px);
@@ -66,10 +65,16 @@
       object-fit: cover;
       cursor: pointer;
     }
+    /* Sidebar footer positioned absolutely at the bottom */
     .sidebar-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       padding: 16px;
       border-top: 1px solid #334155;
       text-align: center;
+      background: #1e293b;
     }
     .sidebar-footer a {
       color: #818cf8;
@@ -411,7 +416,7 @@
       <span class="close" id="about-close">&times;</span>
       <h2>About NeuraFlow AI</h2>
       <p>At NeuraFlow AI, we are revolutionizing the way people interact with artificial intelligence. Our cutting-edge technology is designed to enhance productivity, streamline decision-making, and unlock new possibilities across various industries.</p>
-      <p>Founded by Sahlan Hasan, an innovator passionate about AI and automation, NeuraFlow AI specializes in advanced machine learning, automation, and data-driven insights. Our products and services empower individuals, businesses, and organizations to harness the full potential of AI for smarter workflows and innovative problem-solving.</p>
+      <p>Founded by <strong>Sahlan Hasan</strong>, an innovator passionate about AI and automation, NeuraFlow AI specializes in advanced machine learning, automation, and data-driven insights. Our products and services empower individuals, businesses, and organizations to harness the full potential of AI for smarter workflows and innovative problem-solving.</p>
       <p>We are committed to pushing the boundaries of artificial intelligence, ensuring our solutions are not only powerful but also accessible, ethical, and user-friendly. Whether you are an entrepreneur, developer, or enterprise, NeuraFlow AI is here to drive the future of AI innovation with you.</p>
       <p>Join us on our journey as we shape the next era of intelligent technology.</p>
       <p>Welcome to NeuraFlow AI – The Future, Flowing with Intelligence.</p>
