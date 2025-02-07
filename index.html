@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Enable full-screen experience on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>NeuraFlow AI Pro</title>
-  <!-- SEO Meta Tags -->
   <meta name="description" content="NeuraFlow AI Pro - A cutting-edge AI platform by Sahlan Hasan, revolutionizing neural networks and artificial intelligence technology.">
   <meta name="keywords" content="NeuraFlow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
   <meta name="robots" content="index, follow">
@@ -16,7 +14,6 @@
   <meta property="og:url" content="https://yourwebsite.com">
   
   <style>
-    /* === Base Styles === */
     * {
       margin: 0;
       padding: 0;
@@ -31,7 +28,6 @@
       padding-top: env(safe-area-inset-top);
     }
 
-    /* === Sidebar (UI for header logo remains unchanged except for new image and size) === */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -56,13 +52,14 @@
       align-items: center;
       gap: 12px;
     }
-    /* Updated logo size and new image source */
     .logo {
       width: 70px;
       height: 70px;
-      border-radius: 10px;
+      border-radius: 50%;
       object-fit: cover;
       cursor: pointer;
+      border: 2px solid #00adb5;
+      box-shadow: 0 2px 8px rgba(0, 173, 181, 0.3);
     }
     .sidebar-header h2 {
       color: #e0e7ff;
@@ -88,7 +85,6 @@
       overflow-y: auto;
     }
 
-    /* === Header === */
     .header {
       padding: 15px 20px;
       background: #121926;
@@ -118,7 +114,6 @@
       margin: 0 10px;
       overflow-x: hidden;
     }
-    /* Header Title as a single element "NeuraFlow AI" with a premium teal gradient */
     .header-title-main {
       font-size: 1.8rem;
       font-weight: 800;
@@ -129,7 +124,6 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
       white-space: nowrap;
     }
-    /* Reduced CEO & Founder Tag size */
     .ceo-tag {
       font-size: 0.8rem;
       font-weight: 600;
@@ -142,7 +136,6 @@
       white-space: nowrap;
     }
 
-    /* === Chat Container === */
     .container {
       height: 100vh;
       display: flex;
@@ -184,7 +177,6 @@
       }
     }
 
-    /* === Input Area === */
     .input-container {
       padding: 20px;
       background: #121926;
@@ -212,7 +204,6 @@
       border-color: #00adb5;
       box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.2);
     }
-    /* Redesigned circular send button with updated send arrow */
     #send-btn {
       width: 50px;
       height: 50px;
@@ -247,7 +238,6 @@
       transform: scale(1.2);
     }
 
-    /* === Modal === */
     .modal {
       display: none;
       position: fixed;
@@ -287,7 +277,6 @@
       color: #00d0ff;
     }
 
-    /* === Mobile Styles === */
     @media (max-width: 768px) {
       .header {
         flex-wrap: wrap;
@@ -299,10 +288,10 @@
         text-align: center;
       }
       .header-title-main {
-        font-size: 1.2rem; /* Reduced so full title fits */
+        font-size: 1.2rem;
       }
       .ceo-tag {
-        font-size: 0.8rem; /* Smaller tag for extra space */
+        font-size: 0.8rem;
         padding: 6px 10px;
       }
       .input-container {
@@ -338,11 +327,9 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <!-- Updated logo image with new source and larger size -->
-      <img src="https://i.postimg.cc/N059LFgX/DALL-E-2025-02-08-02-52-36-A-modern-sleek-logo-for-Neura-Flow-AI-The-design-should-be-minimalis.webp" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
+      <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">NeuraFlow</h2>
     </div>
     <div class="sidebar-menu">
@@ -351,7 +338,6 @@
     <ul class="conversation-list" id="conversation-list"></ul>
   </nav>
 
-  <!-- Main Interface -->
   <div class="container">
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
@@ -380,7 +366,6 @@
     </div>
   </div>
 
-  <!-- About Us Modal -->
   <div id="aboutModal" class="modal">
     <div class="modal-content">
       <span class="close" id="about-close">&times;</span>
@@ -394,7 +379,6 @@
   </div>
 
   <script>
-    // Functionality
     const sidebar = document.querySelector('.sidebar');
     const menuButton = document.getElementById('menu-button');
     const chatBox = document.getElementById('chat-box');
