@@ -305,30 +305,25 @@
       color: #00d0ff;
     }
 
-    /* Typing animation */
     .typing-indicator {
-      display: inline-block;
-      position: relative;
-      width: 80px;
-      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 18px;
+      background: #121926;
+      border-radius: 25px;
+      border: 1px solid #1e2a38;
+      gap: 8px;
     }
-
     .typing-dot {
-      position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       background: #00adb5;
       border-radius: 50%;
       animation: typing 1.4s infinite ease-in-out;
     }
-
-    .typing-dot:nth-child(1) { left: 0; animation-delay: 0s; }
-    .typing-dot:nth-child(2) { left: 15px; animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { left: 30px; animation-delay: 0.4s; }
-
     @keyframes typing {
       0%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
+      40% { transform: translateY(-6px); }
     }
 
     @media (max-width: 768px) {
@@ -346,9 +341,10 @@
         font-size: 1.2rem;
       }
       .ceo-tag {
-        font-size: 0.7rem;
-        padding: 4px 8px;
+        font-size: 0.75rem;
+        padding: 5px 10px;
         display: block !important;
+        margin-left: auto;
       }
       .input-container {
         position: fixed;
@@ -357,23 +353,13 @@
         right: 0;
         padding: 8px 10px;
         z-index: 1000;
-        background: #121926;
-        border-top: 1px solid #1e2a38;
-      }
-      .input-wrapper {
-        gap: 8px;
       }
       #user-input {
-        padding: 10px 15px;
-        font-size: 0.9rem;
+        padding: 12px 16px;
       }
       #send-btn {
         width: 45px;
         height: 45px;
-      }
-      #send-btn svg {
-        width: 20px;
-        height: 20px;
       }
       .chat-container {
         padding: 12px;
@@ -386,7 +372,6 @@
       .message-icon {
         width: 28px;
         height: 28px;
-        font-size: 14px;
       }
     }
   </style>
@@ -425,9 +410,8 @@
       <div class="input-wrapper">
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-send" viewBox="0 0 24 24">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
           </svg>
         </button>
       </div>
@@ -453,24 +437,22 @@
     const userInput = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
     const conversationList = document.getElementById('conversation-list');
-    const sidebarLogo = document.getElementById('sidebar-logo');
     const aboutUsLink = document.getElementById('about-us-link');
     const aboutModal = document.getElementById('aboutModal');
     const aboutClose = document.getElementById('about-close');
 
-    // Sidebar toggle
+    // Sidebar Toggle
     menuButton.addEventListener('click', () => sidebar.classList.toggle('active'));
-    sidebarLogo.addEventListener('click', () => sidebar.classList.add('active'));
 
-    // Message handling with typing animation
+    // Message Handling
     async function handleInput() {
       const text = userInput.value.trim();
       if (!text) return;
 
-      // Add user message
+      // Add User Message
       addMessage(text, true);
       
-      // Add to conversation history
+      // Add to History
       const historyItem = document.createElement('li');
       historyItem.textContent = text;
       historyItem.style.padding = '12px';
@@ -479,12 +461,84 @@
 
       userInput.value = '';
 
-      // Show typing animation
-      const typingMessage = document.createElement('div');
-      typingMessage.className = 'message bot-message';
-      typingMessage.innerHTML = `
+      // Show Typing Animation
+      const typing = document.createElement('div');
+      typing.className = 'message bot-message';
+      typing.innerHTML = `
         <div class="message-icon">🤖</div>
         <div class="typing-indicator">
           <div class="typing-dot"></div>
           <div class="typing-dot"></div>
-          <
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      chatBox.appendChild(typing);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Simulate AI Processing
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      typing.remove();
+
+      // Add Bot Response
+      const response = getAIResponse(text);
+      addMessage(response, false);
+    }
+
+    // AI Response System
+    function getAIResponse(input) {
+      const patterns = [
+        /ceo/i, /founder/i, /created you/i, 
+        /who made you/i, /who is (your|the)/i, 
+        /sahlan hasan/i, /creator/i
+      ];
+      
+      const responses = [
+        "Sahlan Hasan, our visionary CEO and Founder, leads NeuraFlow AI with exceptional expertise.",
+        "The architectural mastermind is Sahlan Hasan, serving as both CEO and Chief Architect.",
+        "Under Sahlan Hasan's leadership, we're pioneering next-gen AI solutions."
+      ];
+
+      if (patterns.some(pattern => pattern.test(input))) {
+        return responses[Math.floor(Math.random() * responses.length)] + " 🚀";
+      }
+      
+      return "🧠 Neural processors analyzing... ⚡ Response matrix activated... 🌌 Processing complete!";
+    }
+
+    function addMessage(text, isUser) {
+      const message = document.createElement('div');
+      message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+      message.innerHTML = `
+        <div class="message-icon">${isUser ? '👤' : '🤖'}</div>
+        <div class="message-content">${text}</div>
+      `;
+      chatBox.appendChild(message);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Event Listeners
+    sendBtn.addEventListener('click', handleInput);
+    userInput.addEventListener('keypress', e => e.key === 'Enter' && handleInput());
+    aboutUsLink.addEventListener('click', e => {
+      e.preventDefault();
+      aboutModal.style.display = 'block';
+    });
+    aboutClose.addEventListener('click', () => aboutModal.style.display = 'none');
+    window.addEventListener('click', e => e.target === aboutModal && (aboutModal.style.display = 'none'));
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Touch Gestures
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+    document.addEventListener('touchend', e => {
+      if (Math.abs(e.changedTouches[0].clientX - touchStartX) > 50) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
