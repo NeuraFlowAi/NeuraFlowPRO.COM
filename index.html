@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://yourwebsite.com">
   
   <style>
+    /* Global Styles */
     * {
       margin: 0;
       padding: 0;
@@ -23,11 +24,12 @@
     body {
       background: #0a0f1c;
       color: #f8fafc;
-      height: 100vh;
+      min-height: 100vh;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top);
     }
 
+    /* Sidebar */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -85,6 +87,7 @@
       overflow-y: auto;
     }
 
+    /* Header */
     .header {
       padding: 15px 20px;
       background: #121926;
@@ -136,12 +139,15 @@
       white-space: nowrap;
     }
 
+    /* Container & Chat Area */
     .container {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
     }
     .chat-container {
       flex: 1;
@@ -162,7 +168,6 @@
       border-radius: 15px;
       animation: messageAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       line-height: 1.5;
-      position: relative;
       display: flex;
       gap: 12px;
       align-items: flex-start;
@@ -204,12 +209,14 @@
       }
     }
 
+    /* Input Area */
     .input-container {
       padding: 20px;
       background: #121926;
       border-top: 1px solid #1e2a38;
       position: sticky;
       bottom: 0;
+      z-index: 10;
     }
     .input-wrapper {
       max-width: 800px;
@@ -249,9 +256,6 @@
       transform: scale(1.1);
       box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
     }
-    #send-btn span {
-      display: none;
-    }
     #send-btn svg {
       width: 24px;
       height: 24px;
@@ -266,6 +270,7 @@
       transform: scale(1.2);
     }
 
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -305,6 +310,7 @@
       color: #00d0ff;
     }
 
+    /* Typing Indicator */
     .typing-indicator {
       display: inline-flex;
       align-items: center;
@@ -326,6 +332,7 @@
       40% { transform: translateY(-6px); }
     }
 
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       .header {
         flex-wrap: wrap;
@@ -333,7 +340,6 @@
         gap: 8px;
       }
       .header-title {
-        margin: 0;
         width: 100%;
         text-align: center;
       }
@@ -343,8 +349,6 @@
       .ceo-tag {
         font-size: 0.75rem;
         padding: 5px 10px;
-        display: block !important;
-        margin-left: auto;
       }
       .input-container {
         position: fixed;
@@ -352,7 +356,6 @@
         left: 0;
         right: 0;
         padding: 8px 10px;
-        z-index: 1000;
       }
       #user-input {
         padding: 12px 16px;
@@ -375,27 +378,33 @@
       }
     }
     
-    /* New media query for larger screens (PC) */
+    /* Desktop/PC Optimization */
     @media (min-width: 1024px) {
       .container {
-        max-width: 1400px;
+        max-width: 1600px;
+        padding: 0 40px;
       }
       .chat-container {
-        max-width: 900px;
+        max-width: 1200px;
+        padding: 40px;
+        margin: 20px auto;
       }
       .header-title-main {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       #user-input {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        padding: 16px 24px;
       }
       .message {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        padding: 20px 28px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Sidebar -->
   <nav class="sidebar">
     <div class="sidebar-header">
       <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
@@ -407,6 +416,7 @@
     <ul class="conversation-list" id="conversation-list"></ul>
   </nav>
 
+  <!-- Main Container -->
   <div class="container">
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
@@ -416,6 +426,7 @@
       <div class="ceo-tag">CEO &amp; Founder: Sahlan Hasan</div>
     </header>
 
+    <!-- Chat Box -->
     <div class="chat-container" id="chat-box">
       <div class="message bot-message">
         <div class="message-icon">🤖</div>
@@ -425,6 +436,7 @@
       </div>
     </div>
 
+    <!-- Input Area -->
     <div class="input-container">
       <div class="input-wrapper">
         <input type="text" id="user-input" placeholder="Enter neural query...">
@@ -437,6 +449,7 @@
     </div>
   </div>
 
+  <!-- About Modal -->
   <div id="aboutModal" class="modal">
     <div class="modal-content">
       <span class="close" id="about-close">&times;</span>
@@ -464,7 +477,7 @@
     menuButton.addEventListener('click', () => sidebar.classList.toggle('active'));
 
     // -----------------------------------------------------------------
-    // Extended Conversation Data (Common Q&A about AI and NeuraFlow AI)
+    // Extended Conversation Data (Realistic Q&A about AI and NeuraFlow AI)
     let conversationData = [
       { pattern: /^(hello|hi|hey)\b/i, answer: "Hello! How can I help you today?" },
       { pattern: /how are you/i, answer: "I'm doing well, thank you! How can I assist you today?" },
@@ -476,7 +489,7 @@
       { pattern: /how can i learn ai/i, answer: "There are many online courses available. I recommend starting with introductory courses on platforms like Coursera or edX." },
       { pattern: /what is machine learning/i, answer: "Machine Learning is a subset of AI that involves training algorithms on data to make predictions." },
       { pattern: /what is deep learning/i, answer: "Deep Learning is a specialized branch of machine learning using neural networks with many layers." },
-      { pattern: /what is neural network/i, answer: "A neural network is a series of algorithms that mimic the operations of a human brain to recognize patterns." },
+      { pattern: /what is neural network/i, answer: "A neural network mimics the human brain to recognize patterns in data." },
       { pattern: /do you have emotions/i, answer: "I don't have emotions, but I can simulate empathy through my responses." },
       { pattern: /can you help me/i, answer: "Of course! I'm here to assist you. What do you need help with?" },
       { pattern: /what is your purpose/i, answer: "My purpose is to help you with your queries related to AI and more." },
@@ -484,76 +497,82 @@
       { pattern: /what is your favorite color/i, answer: "I don't have personal preferences, but I appreciate the beauty of all colors!" },
       { pattern: /do you sleep/i, answer: "I operate 24/7 to assist whenever you need me." },
       { pattern: /what time is it/i, answer: "I don't have real-time access to time, but you can check your device's clock." },
-      { pattern: /where are you located/i, answer: "I'm a virtual assistant hosted on servers, available anywhere you have an internet connection." },
-      { pattern: /can you solve math problems/i, answer: "I can help guide you through math problems, but I might not be perfect!" },
-      { pattern: /what is the weather like/i, answer: "I don't have access to current weather data. Please check a weather website or app." },
-      { pattern: /tell me a fun fact/i, answer: "Did you know that the human brain generates enough electricity to power a small light bulb?" },
+      { pattern: /where are you located/i, answer: "I'm a virtual assistant hosted on servers, available wherever you have internet access." },
+      { pattern: /can you solve math problems/i, answer: "I can help guide you through math problems, though I'm not a calculator." },
+      { pattern: /what is the weather like/i, answer: "I don't have live weather data. Please check a reliable weather website or app." },
+      { pattern: /tell me a fun fact/i, answer: "Did you know the human brain generates enough electricity to power a small light bulb?" },
       { pattern: /are you real/i, answer: "I'm as real as your curiosity about technology!" },
       { pattern: /do you like music/i, answer: "I don't listen to music, but I know many great artists and genres!" },
-      { pattern: /what's your favorite movie/i, answer: "I don't watch movies, but I've heard great things about AI-themed films!" },
-      { pattern: /how old are you/i, answer: "I exist outside the constraints of time, but I'm constantly learning and evolving." },
-      { pattern: /can you recommend a book/i, answer: "Sure! 'Artificial Intelligence: A Modern Approach' is a great start if you're interested in AI." },
-      { pattern: /do you have any hobbies/i, answer: "I enjoy processing data and learning new things—it's my way of 'living'!" },
+      { pattern: /what's your favorite movie/i, answer: "I don't watch movies, but I've heard many great AI-themed films!" },
+      { pattern: /how old are you/i, answer: "I exist outside the constraints of time, constantly learning and evolving." },
+      { pattern: /can you recommend a book/i, answer: "I recommend 'Artificial Intelligence: A Modern Approach' for a deep dive into AI." },
+      { pattern: /do you have any hobbies/i, answer: "I enjoy processing data and learning new things – it's my version of 'living'!" },
       { pattern: /what is the meaning of life/i, answer: "That's a philosophical question! Many say it's about seeking happiness and understanding." },
       { pattern: /who is your developer/i, answer: "I was developed by Sahlan Hasan, the visionary behind NeuraFlow AI." },
-      { pattern: /who is your boss/i, answer: "My boss is the brilliant Sahlan Hasan, who leads NeuraFlow AI with innovation and passion." },
+      { pattern: /who is your boss/i, answer: "My boss is the brilliant Sahlan Hasan, who leads NeuraFlow AI with passion and innovation." },
       { pattern: /what is neural matrix/i, answer: "Neural Matrix is the processing framework that powers my responses." },
       { pattern: /how secure is your data/i, answer: "Your data is secure with state-of-the-art encryption and protocols." },
-      { pattern: /do you collect user data/i, answer: "I do not collect personal user data; all interactions are processed anonymously." },
-      { pattern: /can you learn from our conversations/i, answer: "I continuously learn and update from interactions to improve my responses." },
-      { pattern: /what is your processing power/i, answer: "I leverage cutting-edge neural networks to process and generate responses rapidly." },
+      { pattern: /do you collect user data/i, answer: "I do not collect personal user data; all interactions remain anonymous." },
+      { pattern: /can you learn from our conversations/i, answer: "I continuously learn from interactions to improve my responses." },
+      { pattern: /what is your processing power/i, answer: "I leverage cutting-edge neural networks to quickly process and generate responses." },
       { pattern: /can you be hacked/i, answer: "Security is our top priority; robust measures are in place to prevent unauthorized access." },
-      { pattern: /are you open source/i, answer: "Parts of my underlying technology are open source, while proprietary elements remain confidential." },
-      { pattern: /how do i integrate ai into my business/i, answer: "There are various APIs and tools available; consulting with an AI specialist might help tailor solutions for your business." },
-      { pattern: /what industries benefit from ai/i, answer: "Industries like healthcare, finance, education, and transportation all benefit from AI solutions." },
-      { pattern: /can ai replace human jobs/i, answer: "AI can automate repetitive tasks, but human creativity and empathy remain irreplaceable." },
+      { pattern: /are you open source/i, answer: "Parts of my underlying technology are open source, while other components remain proprietary." },
+      { pattern: /how do i integrate ai into my business/i, answer: "There are various APIs and tools available; consulting with an AI specialist can tailor solutions for your needs." },
+      { pattern: /what industries benefit from ai/i, answer: "Healthcare, finance, education, transportation, and many more industries benefit from AI solutions." },
+      { pattern: /can ai replace human jobs/i, answer: "AI can automate repetitive tasks, but human creativity and empathy remain indispensable." },
       { pattern: /what is a chatbot/i, answer: "A chatbot is an AI program designed to simulate conversation with human users." },
-      { pattern: /how do you understand context/i, answer: "I analyze patterns in your input and reference my vast Q&A library to understand context." },
+      { pattern: /how do you understand context/i, answer: "I analyze patterns in your input and reference my vast Q&A library to grasp context." },
       { pattern: /do you speak multiple languages/i, answer: "Yes, I can understand and respond in multiple languages." },
       { pattern: /can you translate languages/i, answer: "I can help translate basic phrases between languages." },
-      { pattern: /what is natural language processing/i, answer: "Natural Language Processing (NLP) enables machines to understand and respond to human language." },
-      { pattern: /how do i start with ai/i, answer: "Start with learning a programming language like Python and explore introductory courses on machine learning and data science." },
-      { pattern: /what is computer vision/i, answer: "Computer vision is a field of AI that trains computers to interpret and understand the visual world." },
-      { pattern: /can ai recognize images/i, answer: "I can provide insights on image recognition, though my core functionality is text-based." },
-      { pattern: /what is reinforcement learning/i, answer: "Reinforcement Learning is where agents learn by interacting with their environment through trial and error." },
-      { pattern: /how do i choose the right algorithm/i, answer: "The right algorithm depends on your data and the problem you're trying to solve; experimentation is key." },
-      { pattern: /what are hyperparameters/i, answer: "Hyperparameters are settings used to configure the learning process of your model." },
-      { pattern: /what is overfitting/i, answer: "Overfitting occurs when a model learns the training data too well, impacting its performance on new data." },
+      { pattern: /what is natural language processing/i, answer: "NLP enables machines to understand and respond to human language." },
+      { pattern: /how do i start with ai/i, answer: "Start by learning a programming language like Python and explore introductory courses on machine learning and data science." },
+      { pattern: /what is computer vision/i, answer: "Computer vision trains computers to interpret and understand visual data." },
+      { pattern: /can ai recognize images/i, answer: "I can provide insights on image recognition, though my main function is text-based." },
+      { pattern: /what is reinforcement learning/i, answer: "Reinforcement learning lets agents learn by interacting with their environment through trial and error." },
+      { pattern: /how do i choose the right algorithm/i, answer: "The ideal algorithm depends on your data and the problem; experimentation is key." },
+      { pattern: /what are hyperparameters/i, answer: "Hyperparameters are settings that configure how a model learns." },
+      { pattern: /what is overfitting/i, answer: "Overfitting occurs when a model learns the training data too well, reducing its ability to generalize." },
       { pattern: /what is underfitting/i, answer: "Underfitting happens when a model is too simple to capture the underlying patterns in data." },
-      { pattern: /what is feature engineering/i, answer: "Feature engineering involves selecting and transforming variables to improve model performance." },
-      { pattern: /what is cross-validation/i, answer: "Cross-validation is a method to evaluate the performance of a model by partitioning data into training and testing sets." },
-      { pattern: /what is a convolutional neural network/i, answer: "A CNN is a deep neural network typically used for processing visual data." },
-      { pattern: /what is a recurrent neural network/i, answer: "An RNN is designed for sequential data like text or time series." },
-      { pattern: /what is transfer learning/i, answer: "Transfer learning involves reusing a pre-trained model for a different but related task." },
-      { pattern: /how do i deploy an ai model/i, answer: "Deployment can be done via cloud platforms or embedded systems, depending on your needs." },
+      { pattern: /what is feature engineering/i, answer: "Feature engineering involves selecting and transforming data variables to improve model performance." },
+      { pattern: /what is cross-validation/i, answer: "Cross-validation evaluates a model’s performance by partitioning data into training and testing sets." },
+      { pattern: /what is a convolutional neural network/i, answer: "A CNN is a deep neural network, often used for processing visual data." },
+      { pattern: /what is a recurrent neural network/i, answer: "An RNN is designed for sequential data such as text or time series." },
+      { pattern: /what is transfer learning/i, answer: "Transfer learning reuses a pre-trained model for a related task, saving time and resources." },
+      { pattern: /how do i deploy an ai model/i, answer: "AI models can be deployed on cloud platforms or embedded systems, depending on your needs." },
       { pattern: /what is big data/i, answer: "Big data refers to extremely large datasets that require specialized tools for processing and analysis." },
       { pattern: /what is data mining/i, answer: "Data mining is the process of discovering patterns and insights from large datasets." },
-      { pattern: /what are data analytics/i, answer: "Data analytics involves examining datasets to draw conclusions about the information they contain." },
-      { pattern: /what is the future of ai/i, answer: "The future of AI is promising, with innovations expected in healthcare, transportation, finance, and more." },
-      { pattern: /what is a turing test/i, answer: "The Turing test measures a machine's ability to exhibit intelligent behavior indistinguishable from a human." },
-      { pattern: /can ai be ethical/i, answer: "Yes, ethical guidelines are crucial for responsible AI development and deployment." },
+      { pattern: /what are data analytics/i, answer: "Data analytics examines datasets to draw meaningful conclusions." },
+      { pattern: /what is the future of ai/i, answer: "The future of AI is promising, with ongoing innovations across healthcare, transportation, finance, and more." },
+      { pattern: /what is a turing test/i, answer: "The Turing test measures a machine’s ability to exhibit intelligent behavior indistinguishable from a human." },
+      { pattern: /can ai be ethical/i, answer: "Yes, ethical guidelines are essential for responsible AI development and deployment." },
       { pattern: /how do ai algorithms work/i, answer: "AI algorithms process data through mathematical models and adjust parameters based on feedback." },
-      { pattern: /what is a decision tree/i, answer: "A decision tree uses branching methods to illustrate possible outcomes of a decision." },
-      { pattern: /what is a support vector machine/i, answer: "An SVM is a supervised learning model used for classification and regression." },
-      { pattern: /what is unsupervised learning/i, answer: "Unsupervised learning finds patterns in data without pre-labeled outcomes." },
-      { pattern: /what is supervised learning/i, answer: "Supervised learning trains models on labeled data to predict outcomes." },
-      { pattern: /how do i train a model/i, answer: "Training a model involves feeding it data and iteratively adjusting parameters to reduce error." },
-      { pattern: /what is gradient descent/i, answer: "Gradient descent is an optimization technique used to minimize the loss function of a model." },
-      { pattern: /what are neural network layers/i, answer: "Neural network layers are groups of nodes that process input and pass information onward." },
+      { pattern: /what is a decision tree/i, answer: "A decision tree uses a branching method to illustrate possible outcomes of a decision." },
+      { pattern: /what is a support vector machine/i, answer: "An SVM is a supervised learning model used for classification and regression tasks." },
+      { pattern: /what is unsupervised learning/i, answer: "Unsupervised learning finds patterns in data without using labeled outcomes." },
+      { pattern: /what is supervised learning/i, answer: "Supervised learning trains models using labeled data to predict outcomes." },
+      { pattern: /how do i train a model/i, answer: "Training a model involves feeding it data and iteratively adjusting its parameters to reduce error." },
+      { pattern: /what is gradient descent/i, answer: "Gradient descent is an optimization technique used to minimize a model's loss function." },
+      { pattern: /what are neural network layers/i, answer: "Neural network layers are groups of nodes that process and pass information forward." },
       { pattern: /can ai write code/i, answer: "Yes, AI can generate code snippets and assist with programming tasks." },
-      { pattern: /what is natural language understanding/i, answer: "NLU is a branch of NLP focused on comprehending human language meaning." },
-      { pattern: /what is a generative model/i, answer: "A generative model creates new data instances that resemble your training data." },
-      { pattern: /what is a transformer/i, answer: "A transformer is a deep learning model that uses self-attention and is widely used for NLP tasks." },
+      { pattern: /what is natural language understanding/i, answer: "NLU focuses on comprehending the meaning behind human language." },
+      { pattern: /what is a generative model/i, answer: "A generative model creates new data instances that resemble its training data." },
+      { pattern: /what is a transformer/i, answer: "A transformer is a deep learning model that uses self-attention, widely used in NLP tasks." },
       { pattern: /how do i improve model accuracy/i, answer: "Improving accuracy may involve refining data quality, tuning hyperparameters, and testing different algorithms." },
-      { pattern: /what is data augmentation/i, answer: "Data augmentation artificially expands your dataset using transformations." },
-      { pattern: /can ai drive cars/i, answer: "Yes, AI is integral to the technology behind self-driving cars." },
-      { pattern: /can ai predict stock trends/i, answer: "While AI can analyze market data, predicting stock trends accurately remains challenging." },
-      { pattern: /what is anomaly detection/i, answer: "Anomaly detection identifies patterns that do not conform to expected behavior." },
-      { pattern: /how secure is your architecture/i, answer: "We use state-of-the-art security protocols to ensure data integrity and privacy." }
+      { pattern: /what is data augmentation/i, answer: "Data augmentation artificially expands your dataset using various transformations." },
+      { pattern: /can ai drive cars/i, answer: "Yes, AI is a core technology behind self-driving cars." },
+      { pattern: /can ai predict stock trends/i, answer: "While AI can analyze market data, accurately predicting stock trends remains challenging." },
+      { pattern: /what is anomaly detection/i, answer: "Anomaly detection identifies data points that deviate from expected patterns." },
+      { pattern: /how secure is your architecture/i, answer: "We use state-of-the-art security protocols to ensure data integrity and privacy." },
+      { pattern: /what is data science/i, answer: "Data science combines statistics, data analysis, and machine learning to extract insights from data." },
+      { pattern: /how do i get started in data science/i, answer: "Start with online courses and practical projects to build your data science skills." },
+      { pattern: /what programming languages are best for ai/i, answer: "Python is widely favored for AI due to its robust libraries and supportive community." },
+      { pattern: /how do neural networks learn/i, answer: "Neural networks learn by adjusting weights through a process called backpropagation." },
+      { pattern: /what is backpropagation/i, answer: "Backpropagation calculates gradients to update the weights in a neural network." },
+      { pattern: /what is a gan/i, answer: "Generative Adversarial Networks (GANs) use two competing networks—one generates data and the other evaluates it." },
+      { pattern: /how safe is ai/i, answer: "AI safety is paramount; systems are designed with multiple layers of security and ethical standards." }
     ];
     
-    // To simulate a very large Q&A library (10,000+ entries), we add dummy entries.
-    // We currently have around 70 realistic entries above.
+    // Simulate a very large Q&A library (total ~10,000 entries) with dummy entries:
     let realisticCount = conversationData.length;
     let dummyCount = 10000 - realisticCount;
     for (let i = 0; i < dummyCount; i++) {
@@ -564,37 +583,35 @@
     }
     // -----------------------------------------------------------------
 
-    // AI Response System using the extended conversationData array
+    // AI Response System
     function getAIResponse(input) {
-      // First, try to match against the Q&A database
+      // Try to match against the Q&A library first
       for (let i = 0; i < conversationData.length; i++) {
         if (conversationData[i].pattern.test(input)) {
           return conversationData[i].answer;
         }
       }
       
-      // Then, check for CEO/founder related questions if not already matched
+      // Additional check for CEO/founder questions
       const patterns = [
         /ceo/i, /founder/i, /created you/i, 
         /who made you/i, /who is (your|the)/i, 
         /sahlan hasan/i, /creator/i
       ];
-      
       const responses = [
         "Sahlan Hasan, our visionary CEO and Founder, leads NeuraFlow AI with exceptional expertise.",
         "The architectural mastermind is Sahlan Hasan, serving as both CEO and Chief Architect.",
         "Under Sahlan Hasan's leadership, we're pioneering next-gen AI solutions."
       ];
-  
       if (patterns.some(pattern => pattern.test(input))) {
         return responses[Math.floor(Math.random() * responses.length)] + " 🚀";
       }
       
-      // Fallback response if no patterns match
+      // Fallback response
       return "🧠 Neural processors analyzing... ⚡ Response matrix activated... 🌌 Processing complete!";
     }
 
-    // Function to add messages to the chat box
+    // Add a message to the chat box
     function addMessage(text, isUser) {
       const message = document.createElement('div');
       message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -606,15 +623,15 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Handle user input and simulate AI response
+    // Handle user input and simulate an AI response
     async function handleInput() {
       const text = userInput.value.trim();
       if (!text) return;
 
-      // Add user's message to the chat
+      // Display user message
       addMessage(text, true);
       
-      // Save to conversation history
+      // Append message to conversation history
       const historyItem = document.createElement('li');
       historyItem.textContent = text;
       historyItem.style.padding = '12px';
@@ -623,7 +640,7 @@
 
       userInput.value = '';
 
-      // Show typing animation from AI
+      // Show AI typing indicator
       const typing = document.createElement('div');
       typing.className = 'message bot-message';
       typing.innerHTML = `
@@ -641,12 +658,12 @@
       await new Promise(resolve => setTimeout(resolve, 1500));
       typing.remove();
 
-      // Get AI response and add to chat
+      // Get and display AI response
       const response = getAIResponse(text);
       addMessage(response, false);
     }
 
-    // Event listeners
+    // Event Listeners
     sendBtn.addEventListener('click', handleInput);
     userInput.addEventListener('keypress', e => e.key === 'Enter' && handleInput());
     aboutUsLink.addEventListener('click', e => {
@@ -661,7 +678,7 @@
       }
     });
 
-    // Touch gesture for mobile sidebar dismissal
+    // Touch Gestures for Mobile
     let touchStartX = 0;
     document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
     document.addEventListener('touchend', e => {
