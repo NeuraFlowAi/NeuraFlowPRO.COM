@@ -27,11 +27,9 @@
     body {
       background: #0a0f1c;
       color: #f8fafc;
-      /* Use min-height so mobile browsers adjust properly */
       min-height: 100vh;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top);
-      /* Add bottom safe area to prevent clipping on devices with gesture bars */
       padding-bottom: env(safe-area-inset-bottom);
     }
 
@@ -117,10 +115,7 @@
     }
     .header-title {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* Adjusted margin to match the old code */
+      text-align: center;
       margin: 0;
       overflow-x: hidden;
     }
@@ -148,7 +143,6 @@
 
     /* Container & Chat Area */
     .container {
-      /* Use min-height so that the container always covers the full screen */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -224,7 +218,6 @@
       border-top: 1px solid #1e2a38;
       position: sticky;
       bottom: 0;
-      /* (The mobile override will set this to fixed with a higher z-index) */
     }
     .input-wrapper {
       max-width: 800px;
@@ -342,32 +335,43 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
+      /* Adjust header layout: reordering for full visibility */
       .header {
         flex-wrap: wrap;
-        padding: 8px 10px;
-        gap: 8px;
+        align-items: center;
+        justify-content: center;
+      }
+      #menu-button {
+        order: 1;
+        align-self: flex-start;
       }
       .header-title {
-        /* Overriding the desktop margin to 0 */
-        margin: 0;
-        width: 100%;
+        order: 2;
+        flex-basis: 100%;
         text-align: center;
+        margin-top: 5px;
       }
       .header-title-main {
         font-size: 1.2rem;
       }
       .ceo-tag {
+        order: 3;
+        flex-basis: 100%;
+        text-align: center;
         font-size: 0.75rem;
         padding: 5px 10px;
+        margin-top: 5px;
       }
-      .input-container {
-        position: fixed;
-        /* Use the safe-area inset for bottom padding on mobile */
-        bottom: env(safe-area-inset-bottom, 0);
-        left: 0;
-        right: 0;
-        padding: 8px 10px;
-        z-index: 1000;
+      /* Allow container and chat area to fill the screen */
+      .container {
+        max-width: 100%;
+        padding: 0 10px;
+      }
+      .chat-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        padding-bottom: 70px;
       }
       #user-input {
         padding: 12px 16px;
@@ -375,10 +379,6 @@
       #send-btn {
         width: 45px;
         height: 45px;
-      }
-      .chat-container {
-        padding: 12px;
-        padding-bottom: 70px;
       }
       .message {
         max-width: 90%;
