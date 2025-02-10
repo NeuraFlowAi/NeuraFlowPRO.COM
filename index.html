@@ -93,6 +93,7 @@
 
     /* Header */
     .header {
+      position: relative;
       padding: 15px 20px;
       background: #121926;
       border-bottom: 1px solid #1e2a38;
@@ -102,6 +103,7 @@
       gap: 15px;
       overflow-x: hidden;
     }
+    /* Left (menu button) */
     .menu-button {
       background: none;
       border: none;
@@ -112,13 +114,15 @@
       border-radius: 8px;
       transition: background 0.2s;
       flex: 0 0 auto;
+      z-index: 1;
     }
+    /* Center title is absolutely positioned */
     .header-title {
-      flex: 1;
-      text-align: center;
-      /* Ensure the title stays in one line */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       white-space: nowrap;
-      overflow: visible;
+      text-align: center;
     }
     .header-title-main {
       font-size: 1.8rem;
@@ -129,6 +133,7 @@
       color: transparent;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
+    /* Right (CEO tag) */
     .ceo-tag {
       font-size: 0.8rem;
       font-weight: 600;
@@ -140,6 +145,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       white-space: nowrap;
       flex: 0 0 auto;
+      z-index: 1;
     }
 
     /* Container & Chat Area */
@@ -254,6 +260,7 @@
       justify-content: center;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       flex: 0 0 auto;
+      z-index: 1;
     }
     #send-btn:hover {
       transform: scale(1.1);
@@ -337,24 +344,20 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      /* Keep header elements in one row */
+      /* Keep header left/right fixed and center title absolutely positioned */
       .header {
+        /* retain flex layout for left/right items */
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
       }
-      /* Let the title take available space and remain centered */
-      .header-title {
-        flex: 1;
-        text-align: center;
-      }
-      /* Slightly reduce font sizes if needed */
       .header-title-main {
         font-size: 1.2rem;
       }
+      /* Reduce CEO tag size so it fully appears */
       .ceo-tag {
-        font-size: 0.75rem;
-        padding: 5px 10px;
+        font-size: 0.65rem;
+        padding: 3px 6px;
       }
       /* Allow container and chat area to fill the screen */
       .container {
