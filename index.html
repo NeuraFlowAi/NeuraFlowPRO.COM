@@ -485,4 +485,47 @@
       userInput.value = '';
 
       setTimeout(() => {
-       
+        const response = getAIResponse(text);
+        addMessage(response, false);
+      }, 800);
+    }
+
+    // Original event listeners
+    sendBtn.addEventListener('click', handleInput);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleInput();
+    });
+
+    // Modal functionality
+    aboutUsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      aboutModal.style.display = 'block';
+    });
+    aboutClose.addEventListener('click', () => {
+      aboutModal.style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+      if (e.target === aboutModal) {
+        aboutModal.style.display = 'none';
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Touch gestures
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    });
+    document.addEventListener('touchend', e => {
+      const touchEndX = e.changedTouches[0].clientX;
+      if (Math.abs(touchEndX - touchStartX) > 50) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
