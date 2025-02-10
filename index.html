@@ -21,13 +21,18 @@
       box-sizing: border-box;
       font-family: 'Segoe UI', system-ui, sans-serif;
     }
+    html, body {
+      width: 100%;
+    }
     body {
       background: #0a0f1c;
       color: #f8fafc;
-      /* Using full viewport height from the old code */
-      height: 100vh;
+      /* Use min-height so mobile browsers adjust properly */
+      min-height: 100vh;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top);
+      /* Add bottom safe area to prevent clipping on devices with gesture bars */
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     /* Sidebar */
@@ -143,8 +148,8 @@
 
     /* Container & Chat Area */
     .container {
-      /* Using height from old code for a consistent full-screen layout */
-      height: 100vh;
+      /* Use min-height so that the container always covers the full screen */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -357,7 +362,8 @@
       }
       .input-container {
         position: fixed;
-        bottom: 0;
+        /* Use the safe-area inset for bottom padding on mobile */
+        bottom: env(safe-area-inset-bottom, 0);
         left: 0;
         right: 0;
         padding: 8px 10px;
@@ -696,4 +702,3 @@
   </script>
 </body>
 </html>
-
