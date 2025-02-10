@@ -374,6 +374,23 @@
         height: 28px;
       }
     }
+    
+    /* New media query for larger screens (PC) to optimize size */
+    @media (min-width: 769px) {
+      .chat-container {
+        max-width: 1000px;
+      }
+      .message {
+        max-width: 70%;
+        font-size: 1.1rem;
+      }
+      .header-title-main {
+        font-size: 2.2rem;
+      }
+      #user-input {
+        font-size: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -484,8 +501,49 @@
       addMessage(response, false);
     }
 
-    // AI Response System
+    // AI Response System with extended basic conversation Q&A pairs
     function getAIResponse(input) {
+      const conversationData = [
+        { pattern: /^(hello|hi|hey)\b/i, answer: "Hello! How can I help you today?" },
+        { pattern: /how are you/i, answer: "I'm doing well, thank you! How can I assist you today?" },
+        { pattern: /what is your name/i, answer: "I'm NeuraFlow AI, your digital assistant." },
+        { pattern: /what do you do/i, answer: "I provide insights and support for all your neural queries!" },
+        { pattern: /tell me a joke/i, answer: "Why did the AI cross the road? Because it was programmed by a chicken!" },
+        { pattern: /what is ai/i, answer: "Artificial Intelligence is the simulation of human intelligence by machines." },
+        { pattern: /who created you/i, answer: "I was created by the innovative mind of Sahlan Hasan." },
+        { pattern: /how can i learn ai/i, answer: "There are many online courses available. I recommend starting with introductory courses on platforms like Coursera or edX." },
+        { pattern: /what is machine learning/i, answer: "Machine Learning is a subset of AI that involves training algorithms on data to make predictions." },
+        { pattern: /what is deep learning/i, answer: "Deep Learning is a specialized branch of machine learning using neural networks with many layers." },
+        { pattern: /what is neural network/i, answer: "A neural network is a series of algorithms that mimic the operations of a human brain to recognize patterns." },
+        { pattern: /do you have emotions/i, answer: "I don't have emotions, but I can simulate empathy through my responses." },
+        { pattern: /can you help me/i, answer: "Of course! I'm here to assist you. What do you need help with?" },
+        { pattern: /what is your purpose/i, answer: "My purpose is to help you with your queries related to AI and more." },
+        { pattern: /how do you work/i, answer: "I analyze your input using pre-defined patterns and provide you with a fitting response." },
+        { pattern: /what is your favorite color/i, answer: "I don't have personal preferences, but I appreciate the beauty of all colors!" },
+        { pattern: /do you sleep/i, answer: "I operate 24/7 to assist whenever you need me." },
+        { pattern: /what time is it/i, answer: "I don't have real-time access to time, but you can check your device's clock." },
+        { pattern: /where are you located/i, answer: "I'm a virtual assistant hosted on servers, available anywhere you have an internet connection." },
+        { pattern: /can you solve math problems/i, answer: "I can help guide you through math problems, but I might not be perfect!" },
+        { pattern: /what is the weather like/i, answer: "I don't have access to current weather data. Please check a weather website or app." },
+        { pattern: /tell me a fun fact/i, answer: "Did you know that the human brain generates enough electricity to power a small light bulb?" },
+        { pattern: /are you real/i, answer: "I'm as real as your curiosity about technology!" },
+        { pattern: /do you like music/i, answer: "I don't listen to music, but I know many great artists and genres!" },
+        { pattern: /what's your favorite movie/i, answer: "I don't watch movies, but I've heard great things about AI-themed films!" },
+        { pattern: /how old are you/i, answer: "I exist outside the constraints of time, but I'm constantly learning and evolving." },
+        { pattern: /can you recommend a book/i, answer: "Sure! 'Artificial Intelligence: A Modern Approach' is a great start if you're interested in AI." },
+        { pattern: /do you have any hobbies/i, answer: "I enjoy processing data and learning new things—it's my way of 'living'!" },
+        { pattern: /what is the meaning of life/i, answer: "That's a philosophical question! Many say it's about seeking happiness and understanding." }
+        // You can add more conversation pairs here as needed.
+      ];
+
+      // Check if input matches any conversation data pattern
+      for (let i = 0; i < conversationData.length; i++) {
+          if (conversationData[i].pattern.test(input)) {
+              return conversationData[i].answer;
+          }
+      }
+
+      // Existing CEO/founder patterns
       const patterns = [
         /ceo/i, /founder/i, /created you/i, 
         /who made you/i, /who is (your|the)/i, 
