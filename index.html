@@ -140,12 +140,17 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .chat-container {
       flex: 1;
       padding: 24px;
       overflow-y: auto;
       background: linear-gradient(160deg, #0a0f1c 0%, #121926 100%);
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -159,8 +164,8 @@
       line-height: 1.5;
       position: relative;
       display: flex;
-      align-items: flex-start;
       gap: 12px;
+      align-items: flex-start;
     }
     .user-message {
       background: #007c91;
@@ -203,7 +208,8 @@
       padding: 20px;
       background: #121926;
       border-top: 1px solid #1e2a38;
-      position: relative;
+      position: sticky;
+      bottom: 0;
     }
     .input-wrapper {
       max-width: 800px;
@@ -299,10 +305,37 @@
       color: #00d0ff;
     }
 
+    /* Typing animation */
+    .typing-indicator {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 24px;
+    }
+
+    .typing-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #00adb5;
+      border-radius: 50%;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(1) { left: 0; animation-delay: 0s; }
+    .typing-dot:nth-child(2) { left: 15px; animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { left: 30px; animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+    }
+
     @media (max-width: 768px) {
       .header {
         flex-wrap: wrap;
         padding: 8px 10px;
+        gap: 8px;
       }
       .header-title {
         margin: 0;
@@ -313,9 +346,9 @@
         font-size: 1.2rem;
       }
       .ceo-tag {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-        display: none;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        display: block !important;
       }
       .input-container {
         position: fixed;
@@ -425,107 +458,33 @@
     const aboutModal = document.getElementById('aboutModal');
     const aboutClose = document.getElementById('about-close');
 
-    // Original functionality
-    menuButton.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-    });
-    sidebarLogo.addEventListener('click', () => {
-      sidebar.classList.add('active');
-    });
-    
-    // Enhanced message system
-    function addMessage(text, isUser) {
-      const message = document.createElement('div');
-      message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-      message.innerHTML = `
-        <div class="message-icon">${isUser ? '👤' : '🤖'}</div>
-        <div class="message-content">${text}</div>
-      `;
-      chatBox.appendChild(message);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
+    // Sidebar toggle
+    menuButton.addEventListener('click', () => sidebar.classList.toggle('active'));
+    sidebarLogo.addEventListener('click', () => sidebar.classList.add('active'));
 
-    // CEO response system
-    const ceoResponses = [
-      "Sahlan Hasan, our esteemed CEO and Founder, leads NeuraFlow AI with visionary expertise.",
-      "The architect behind this platform is Sahlan Hasan, serving as both CEO and Founder.",
-      "Under the leadership of Sahlan Hasan, our CEO & Founder, we're revolutionizing AI technology.",
-      "NeuraFlow AI was created by Sahlan Hasan, who serves as both Chief Executive and Founder."
-    ];
-
-    function getAIResponse(userMessage) {
-      const patterns = [
-        /ceo/i,
-        /founder/i,
-        /created you/i,
-        /who made you/i,
-        /who is (your|the)/i,
-        /sahlan hasan/i,
-        /creator/i
-      ];
-
-      if (patterns.some(pattern => pattern.test(userMessage))) {
-        return ceoResponses[Math.floor(Math.random() * ceoResponses.length)] + " 🚀";
-      }
-
-      return "🧠 Neural Processors Calibrating... ⚙️ System Upgrade in Progress... 🚀 Stay Tuned!";
-    }
-
-    function handleInput() {
+    // Message handling with typing animation
+    async function handleInput() {
       const text = userInput.value.trim();
       if (!text) return;
 
+      // Add user message
+      addMessage(text, true);
+      
+      // Add to conversation history
       const historyItem = document.createElement('li');
       historyItem.textContent = text;
       historyItem.style.padding = '12px';
       historyItem.style.color = '#e0e7ff';
       conversationList.appendChild(historyItem);
 
-      addMessage(text, true);
       userInput.value = '';
 
-      setTimeout(() => {
-        const response = getAIResponse(text);
-        addMessage(response, false);
-      }, 800);
-    }
-
-    // Original event listeners
-    sendBtn.addEventListener('click', handleInput);
-    userInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') handleInput();
-    });
-
-    // Modal functionality
-    aboutUsLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      aboutModal.style.display = 'block';
-    });
-    aboutClose.addEventListener('click', () => {
-      aboutModal.style.display = 'none';
-    });
-    window.addEventListener('click', (e) => {
-      if (e.target === aboutModal) {
-        aboutModal.style.display = 'none';
-      }
-    });
-    document.addEventListener('click', (e) => {
-      if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
-        sidebar.classList.remove('active');
-      }
-    });
-
-    // Touch gestures
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-    });
-    document.addEventListener('touchend', e => {
-      const touchEndX = e.changedTouches[0].clientX;
-      if (Math.abs(touchEndX - touchStartX) > 50) {
-        sidebar.classList.remove('active');
-      }
-    });
-  </script>
-</body>
-</html>
+      // Show typing animation
+      const typingMessage = document.createElement('div');
+      typingMessage.className = 'message bot-message';
+      typingMessage.innerHTML = `
+        <div class="message-icon">🤖</div>
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <
