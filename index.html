@@ -24,7 +24,8 @@
     body {
       background: #0a0f1c;
       color: #f8fafc;
-      min-height: 100vh;
+      /* Using full viewport height from the old code */
+      height: 100vh;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top);
     }
@@ -114,7 +115,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 10px;
+      /* Adjusted margin to match the old code */
+      margin: 0;
       overflow-x: hidden;
     }
     .header-title-main {
@@ -141,7 +143,8 @@
 
     /* Container & Chat Area */
     .container {
-      min-height: 100vh;
+      /* Using height from old code for a consistent full-screen layout */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -216,7 +219,7 @@
       border-top: 1px solid #1e2a38;
       position: sticky;
       bottom: 0;
-      z-index: 10;
+      /* (The mobile override will set this to fixed with a higher z-index) */
     }
     .input-wrapper {
       max-width: 800px;
@@ -340,6 +343,8 @@
         gap: 8px;
       }
       .header-title {
+        /* Overriding the desktop margin to 0 */
+        margin: 0;
         width: 100%;
         text-align: center;
       }
@@ -356,6 +361,7 @@
         left: 0;
         right: 0;
         padding: 8px 10px;
+        z-index: 1000;
       }
       #user-input {
         padding: 12px 16px;
@@ -442,7 +448,8 @@
         <input type="text" id="user-input" placeholder="Enter neural query...">
         <button id="send-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+            <path d="M22 2L11 13"/>
+            <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
           </svg>
         </button>
       </div>
@@ -454,9 +461,9 @@
     <div class="modal-content">
       <span class="close" id="about-close">&times;</span>
       <h2>About NeuraFlow AI</h2>
-      <p>At NeuraFlow AI, we are revolutionizing the way people interact with artificial intelligence. Our cutting-edge technology is designed to enhance productivity, streamline decision-making, and unlock new possibilities across various industries.</p>
-      <p>Founded by <strong>Sahlan Hasan</strong>, an innovator passionate about AI and automation, NeuraFlow AI specializes in advanced machine learning, automation, and data-driven insights. Our products and services empower individuals, businesses, and organizations to harness the full potential of AI for smarter workflows and innovative problem-solving.</p>
-      <p>We are committed to pushing the boundaries of artificial intelligence, ensuring our solutions are not only powerful but also accessible, ethical, and user-friendly. Whether you are an entrepreneur, developer, or enterprise, NeuraFlow AI is here to drive the future of AI innovation with you.</p>
+      <p>At NeuraFlow AI, we are revolutionizing the way people interact with artificial intelligence. Our cutting‐edge technology is designed to enhance productivity, streamline decision‐making, and unlock new possibilities across various industries.</p>
+      <p>Founded by <strong>Sahlan Hasan</strong>, an innovator passionate about AI and automation, NeuraFlow AI specializes in advanced machine learning, automation, and data‐driven insights. Our products and services empower individuals, businesses, and organizations to harness the full potential of AI for smarter workflows and innovative problem‐solving.</p>
+      <p>We are committed to pushing the boundaries of artificial intelligence, ensuring our solutions are not only powerful but also accessible, ethical, and user‐friendly. Whether you are an entrepreneur, developer, or enterprise, NeuraFlow AI is here to drive the future of AI innovation with you.</p>
       <p>Join us on our journey as we shape the next era of intelligent technology.</p>
       <p>Welcome to NeuraFlow AI – The Future, Flowing with Intelligence.</p>
     </div>
