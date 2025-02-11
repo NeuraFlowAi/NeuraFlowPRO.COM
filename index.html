@@ -59,21 +59,14 @@
       align-items: center;
       gap: 12px;
     }
-    /* (Sidebar image logo remains unchanged) */
+    /* Sidebar Logo: Updated with new image, smaller size, circle shape, and no extra border */
     .logo {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       object-fit: cover;
       cursor: pointer;
-      border: 3px solid;
-      border-image-slice: 1;
-      border-image-source: linear-gradient(45deg, #00adb5, #ffffff, #00adb5);
-      box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
-      transition: transform 0.3s ease;
-    }
-    .logo:hover {
-      transform: scale(1.05);
+      background-color: transparent;
     }
     .sidebar-header h2 {
       color: #e0e7ff;
@@ -99,22 +92,20 @@
       overflow-y: auto;
     }
 
-    /* Menu Button (the clickable icon) */
+    /* Menu Button (clickable sidebar toggle) */
     .menu-button {
       background: none;
       border: none;
       color: #00adb5;
-      font-size: 2rem;
+      font-size: 1.5rem; /* reduced size */
       cursor: pointer;
-      padding: 10px;
-      /* Remove any border styling */
+      padding: 5px;    /* reduced padding */
     }
 
     /* Header – Now spans full width outside the main container */
     .header {
       width: 100%;
       background: #121926;
-      /* Remove border on mobile via media query below */
       border-bottom: 1px solid #1e2a38;
     }
     .header-inner {
@@ -129,6 +120,7 @@
       text-align: center;
     }
     .header-title-main {
+      white-space: nowrap; /* prevents line break between 'NeuraFlow' and 'Ai' */
       font-size: 1.8rem;
       font-weight: 800;
       background: linear-gradient(45deg, #00adb5, #ffffff, #00adb5);
@@ -161,11 +153,11 @@
     }
     .chat-container {
       flex: 1;
-      padding: 24px;
+      padding: 20px; /* slightly reduced padding */
       overflow-y: auto;
       background: linear-gradient(160deg, #0a0f1c 0%, #121926 100%);
       width: 100%;
-      max-width: 800px;
+      max-width: 750px; /* reduced max-width */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -174,7 +166,7 @@
     .message {
       max-width: 75%;
       margin: 16px 0;
-      padding: 16px 24px;
+      padding: 14px 20px; /* reduced padding */
       border-radius: 15px;
       animation: messageAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       line-height: 1.5;
@@ -411,10 +403,10 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar (with unchanged image logo) -->
+  <!-- Sidebar (with updated logo image) -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" 
+      <img src="https://i.postimg.cc/TY530shb/Whats-App-Image-2025-02-11-at-17-00-56-25967b9e.jpg" 
            alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">NeuraFlow</h2>
     </div>
@@ -429,7 +421,7 @@
     <div class="header-inner">
       <button id="menu-button" class="menu-button">☰</button>
       <div class="header-title">
-        <span class="header-title-main">NeuraFlow AI</span>
+        <span class="header-title-main">NeuraFlow Ai</span>
       </div>
       <div class="ceo-tag">CEO &amp; Founder: Sahlan Hasan</div>
     </div>
