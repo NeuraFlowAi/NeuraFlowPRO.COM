@@ -33,7 +33,7 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Sidebar (unchanged) */
+    /* Sidebar – (unchanged positioning) */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -58,14 +58,21 @@
       align-items: center;
       gap: 12px;
     }
+    /* Updated Sidebar Logo with gradient border and hover effect */
     .logo {
       width: 70px;
       height: 70px;
       border-radius: 50%;
       object-fit: cover;
       cursor: pointer;
-      border: 2px solid #00adb5;
-      box-shadow: 0 2px 8px rgba(0, 173, 181, 0.3);
+      border: 3px solid;
+      border-image-slice: 1;
+      border-image-source: linear-gradient(45deg, #00adb5, #ffffff, #00adb5);
+      box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
     }
     .sidebar-header h2 {
       color: #e0e7ff;
@@ -91,7 +98,7 @@
       overflow-y: auto;
     }
 
-    /* Header – Now Full Width and Moved Outside .container */
+    /* Header – Now spans full width outside the main container */
     .header {
       width: 100%;
       background: #121926;
@@ -322,11 +329,11 @@
       40% { transform: translateY(-6px); }
     }
 
-    /* Mobile Responsive */
+    /* Mobile Responsive Adjustments */
     @media (max-width: 768px) {
       .header-inner {
+        padding: 5px; /* reduced padding so header spans nearly edge-to-edge */
         grid-template-columns: auto 1fr auto;
-        padding: 10px 15px;
       }
       .header-title-main {
         font-size: 1.2rem;
@@ -337,12 +344,12 @@
       }
       .container {
         max-width: 100%;
-        padding: 0 10px;
+        padding: 0;  /* remove side padding */
       }
       .chat-container {
         width: 100%;
         max-width: 100%;
-        padding: 12px;
+        padding: 12px 0; /* remove horizontal padding */
         padding-bottom: 70px;
       }
       #user-input {
@@ -388,7 +395,7 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar (remains unchanged) -->
+  <!-- Sidebar remains unchanged (with new logo style) -->
   <nav class="sidebar">
     <div class="sidebar-header">
       <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
