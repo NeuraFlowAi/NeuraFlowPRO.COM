@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>NeuraFlow AI Pro</title>
   <meta name="description" content="NeuraFlow AI Pro - A cutting-edge AI platform by Sahlan Hasan, revolutionizing neural networks and artificial intelligence technology.">
   <meta name="keywords" content="NeuraFlow AI, Neural Networks, Artificial Intelligence, Sahlan Hasan, AI Pro">
@@ -33,7 +34,7 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Sidebar – (unchanged positioning) */
+    /* Sidebar (unchanged positioning) */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -58,7 +59,7 @@
       align-items: center;
       gap: 12px;
     }
-    /* Updated Sidebar Logo with gradient border and hover effect */
+    /* (Sidebar image logo remains unchanged) */
     .logo {
       width: 70px;
       height: 70px;
@@ -98,10 +99,22 @@
       overflow-y: auto;
     }
 
+    /* Menu Button (the clickable icon) */
+    .menu-button {
+      background: none;
+      border: none;
+      color: #00adb5;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px;
+      /* Remove any border styling */
+    }
+
     /* Header – Now spans full width outside the main container */
     .header {
       width: 100%;
       background: #121926;
+      /* Remove border on mobile via media query below */
       border-bottom: 1px solid #1e2a38;
     }
     .header-inner {
@@ -331,16 +344,19 @@
 
     /* Mobile Responsive Adjustments */
     @media (max-width: 768px) {
+      .header {
+        border-bottom: none; /* Remove border from header on mobile */
+      }
       .header-inner {
-        padding: 5px; /* reduced padding so header spans nearly edge-to-edge */
+        padding: 10px;
         grid-template-columns: auto 1fr auto;
       }
       .header-title-main {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
       }
       .ceo-tag {
-        font-size: 0.65rem;
-        padding: 3px 6px;
+        font-size: 0.75rem;
+        padding: 4px 8px;
       }
       .container {
         max-width: 100%;
@@ -395,10 +411,11 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar remains unchanged (with new logo style) -->
+  <!-- Sidebar (with unchanged image logo) -->
   <nav class="sidebar">
     <div class="sidebar-header">
-      <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
+      <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" 
+           alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
       <h2 style="color: #e0e7ff">NeuraFlow</h2>
     </div>
     <div class="sidebar-menu">
@@ -468,8 +485,15 @@
     const aboutModal = document.getElementById('aboutModal');
     const aboutClose = document.getElementById('about-close');
 
-    // Toggle Sidebar
-    menuButton.addEventListener('click', () => sidebar.classList.toggle('active'));
+    // Toggle Sidebar & Update Menu Button Icon
+    menuButton.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      if (sidebar.classList.contains('active')) {
+        menuButton.innerText = '✖';
+      } else {
+        menuButton.innerText = '☰';
+      }
+    });
 
     // -----------------------------------------------------------------
     // Extended Conversation Data (Realistic Q&A about AI and NeuraFlow AI)
@@ -670,6 +694,7 @@
     document.addEventListener('click', e => {
       if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
         sidebar.classList.remove('active');
+        menuButton.innerText = '☰';
       }
     });
 
@@ -679,6 +704,7 @@
     document.addEventListener('touchend', e => {
       if (Math.abs(e.changedTouches[0].clientX - touchStartX) > 50) {
         sidebar.classList.remove('active');
+        menuButton.innerText = '☰';
       }
     });
   </script>
