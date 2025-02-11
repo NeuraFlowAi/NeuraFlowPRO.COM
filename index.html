@@ -92,36 +92,18 @@
     }
 
     /* Header */
+    /* --- Updated Header Styles using Grid Layout --- */
     .header {
-      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto; /* three columns: left, center, right */
+      align-items: center;
       padding: 15px 20px;
       background: #121926;
       border-bottom: 1px solid #1e2a38;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
       overflow-x: hidden;
     }
-    /* Left (menu button) */
-    .menu-button {
-      background: none;
-      border: none;
-      color: #00adb5;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      transition: background 0.2s;
-      flex: 0 0 auto;
-      z-index: 1;
-    }
-    /* Center title is absolutely positioned */
+    /* Remove absolute positioning from .header-title */
     .header-title {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
       text-align: center;
     }
     .header-title-main {
@@ -133,7 +115,7 @@
       color: transparent;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
-    /* Right (CEO tag) */
+    /* CEO tag stays as the right column */
     .ceo-tag {
       font-size: 0.8rem;
       font-weight: 600;
@@ -144,7 +126,6 @@
       color: #00adb5;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       white-space: nowrap;
-      flex: 0 0 auto;
       z-index: 1;
     }
 
@@ -344,22 +325,15 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      /* Keep header left/right fixed and center title absolutely positioned */
-      .header {
-        /* retain flex layout for left/right items */
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-      }
+      /* Header remains using grid so that items are not overlapping */
       .header-title-main {
         font-size: 1.2rem;
       }
-      /* Reduce CEO tag size so it fully appears */
       .ceo-tag {
         font-size: 0.65rem;
         padding: 3px 6px;
       }
-      /* Allow container and chat area to fill the screen */
+      /* Adjust container for mobile */
       .container {
         max-width: 100%;
         padding: 0 10px;
@@ -426,6 +400,7 @@
   </nav>
 
   <!-- Main Container -->
+  <!-- (Optionally, if you want the header to span the full width, you can move it outside of the .container) -->
   <div class="container">
     <header class="header">
       <button id="menu-button" class="menu-button">☰</button>
@@ -699,4 +674,3 @@
   </script>
 </body>
 </html>
-
