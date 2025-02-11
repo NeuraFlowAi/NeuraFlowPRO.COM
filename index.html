@@ -33,7 +33,7 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Sidebar */
+    /* Sidebar (unchanged) */
     .sidebar {
       position: fixed;
       left: -280px;
@@ -91,18 +91,20 @@
       overflow-y: auto;
     }
 
-    /* Header */
-    /* --- Updated Header Styles using Grid Layout --- */
+    /* Header – Now Full Width and Moved Outside .container */
     .header {
-      display: grid;
-      grid-template-columns: auto 1fr auto; /* three columns: left, center, right */
-      align-items: center;
-      padding: 15px 20px;
+      width: 100%;
       background: #121926;
       border-bottom: 1px solid #1e2a38;
-      overflow-x: hidden;
     }
-    /* Remove absolute positioning from .header-title */
+    .header-inner {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
     .header-title {
       text-align: center;
     }
@@ -115,7 +117,6 @@
       color: transparent;
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
-    /* CEO tag stays as the right column */
     .ceo-tag {
       font-size: 0.8rem;
       font-weight: 600;
@@ -126,10 +127,9 @@
       color: #00adb5;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       white-space: nowrap;
-      z-index: 1;
     }
 
-    /* Container & Chat Area */
+    /* Main Container & Chat Area */
     .container {
       min-height: 100vh;
       display: flex;
@@ -241,7 +241,6 @@
       justify-content: center;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       flex: 0 0 auto;
-      z-index: 1;
     }
     #send-btn:hover {
       transform: scale(1.1);
@@ -325,7 +324,10 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      /* Header remains using grid so that items are not overlapping */
+      .header-inner {
+        grid-template-columns: auto 1fr auto;
+        padding: 10px 15px;
+      }
       .header-title-main {
         font-size: 1.2rem;
       }
@@ -333,7 +335,6 @@
         font-size: 0.65rem;
         padding: 3px 6px;
       }
-      /* Adjust container for mobile */
       .container {
         max-width: 100%;
         padding: 0 10px;
@@ -387,7 +388,7 @@
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
+  <!-- Sidebar (remains unchanged) -->
   <nav class="sidebar">
     <div class="sidebar-header">
       <img src="https://i.postimg.cc/7hgXcXdq/Neura-Flow-AI-Circular-Icon.png" alt="NeuraFlow Logo" class="logo" id="sidebar-logo">
@@ -399,17 +400,19 @@
     <ul class="conversation-list" id="conversation-list"></ul>
   </nav>
 
-  <!-- Main Container -->
-  <!-- (Optionally, if you want the header to span the full width, you can move it outside of the .container) -->
-  <div class="container">
-    <header class="header">
+  <!-- Full Width Header -->
+  <header class="header">
+    <div class="header-inner">
       <button id="menu-button" class="menu-button">☰</button>
       <div class="header-title">
         <span class="header-title-main">NeuraFlow AI</span>
       </div>
       <div class="ceo-tag">CEO &amp; Founder: Sahlan Hasan</div>
-    </header>
+    </div>
+  </header>
 
+  <!-- Main Container for Chat & Content -->
+  <div class="container">
     <!-- Chat Box -->
     <div class="chat-container" id="chat-box">
       <div class="message bot-message">
