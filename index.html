@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" href="favicon-96x96.png" sizes="96x96" type="image/png">
-<link rel="manifest" href="site.webmanifest">
+<head>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="manifest" href="site.webmanifest">
 
   <meta charset="UTF-8">
   <meta name="viewport" 
@@ -124,15 +125,23 @@
     .header-title {
       text-align: center;
     }
+    /* --- Updated Title Design for "NeuraFlow Ai" --- */
     .header-title-main {
       white-space: nowrap; /* ensure "NeuraFlow Ai" stays on one line */
       font-size: 1.8rem;
       font-weight: 800;
       background: linear-gradient(45deg, #00adb5, #ffffff, #00adb5);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 0 10px rgba(0, 173, 181, 0.7), 0 0 20px rgba(0, 173, 181, 0.5);
+      animation: gradientShift 3s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     /* Reduced CEO tag style so it takes less space */
     .ceo-tag {
@@ -708,4 +717,3 @@
   </script>
 </body>
 </html>
-
